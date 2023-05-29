@@ -18,8 +18,9 @@
     {{-- CSS STYLE --}}
     <link rel="stylesheet" href="css/main.css">
     
-    {{-- CSS STYLE PER-PAGE --}}
+    {{-- CSS and Scripts STYLE PER-PAGE --}}
     @yield('CSS')
+
 </head>
 <body>
 
@@ -53,7 +54,7 @@
                 </a>
             </li>
             <li>
-                <a href="/" class="a-menu">
+                <a href="/dashboard" class="a-menu">
                     <i class="fa fa-bar-chart-o"></i>
                     <span class="nav-text">
                         Dashboard

@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,16 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('superadmin.index');
-});
+Route::get('/', [LoginController::class, 'index']);
+Route::post('/', [LoginController::class, 'store'])->name('login');
+Route::get('logout', [LoginController::class, 'logout']);
 
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
+Route::get('/users/{id}/edit', [UserController::class, 'edit']);
+Route::patch('/users/{id}/edit', [UserController::class, 'update']);
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('deleteEmployee');
+
+Route::get('/input', [DataController::class, 'create']);
+
+// Route::resource('/users', UserController::class);
