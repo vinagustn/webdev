@@ -36,24 +36,24 @@ class UserController extends Controller
 
 
     //viewed edit page
-    public function edit(User $users)
+    public function edit(User $user)
     {
-        return view('layouts.editEmployee', [
-            'users' => $users,
+        return view('editLayouts.editEmployee', [
+            'user' => $user,
             'tittle' => 'employees'
         ]);
     }
 
     //edit employee
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        DB::table('users')->where('id', $request->id)->update([
-            'name' => $request->name,
-            'username' => $request->username,
-            'password' => $request->password
-        ]);
+        $users = User::find($id);
+        $users->name = $request->name;
+        $users->username = $request->username;
+        $users->password = $request->password;
+        $users->save();
         
-        return redirect('/users');
+        return redirect('/users')->with('success', 'Data berhasil diupdate!');
 
     }
 
@@ -61,7 +61,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::where('id',$id)->delete();
-        return redirect('/users')->with('success', 'Data telah dihapus');
+        return redirect('/users')->with('success', 'Data telah dihapus!');
     }
 
 }

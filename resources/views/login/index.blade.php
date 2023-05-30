@@ -25,17 +25,17 @@
     </nav>
 
     <div class="d-flex justify-content-center mt-5">
-        <form method="POST" action="{{ route('login') }}" class="form-floating m-3 p-4 rounded w-50" style="background-color: white">
+        <form method="POST" action="" class="form-floating m-3 p-4 rounded w-50" style="background-color: white">
+            @csrf
             @if (session()->has('loginError'))
             <div class="alert alert-danger alert-dismissable fade show" role="alert">
                 {{ session('loginError') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
 
             <h1 class="h3 mb-5 fw-normal text-center" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', cursive">Please Login</h1>
         
-            @csrf
             <div class="form-floating mb-2">
                 <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="username" required autofocus value="{{ old('username') }}">
                 <label for="username">Username</label>

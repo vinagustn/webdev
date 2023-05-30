@@ -3,8 +3,16 @@
 @section('layouts')
 
 @if ($errors->any())
-<div class="alert alert-danger">
+<div class="alert alert-danger" role="alert">
     <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
+@if ($message = Session::get('success'))
+<div class="alert alert-success alert-block">
+	<button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong>{{ $message }}</strong>
 </div>
 @endif
 
@@ -50,13 +58,13 @@
                             <td>
                                 <div class="row">
                                     <div class="col-1">
-                                        <form action="/users/{{ $user->id }}/edit">
-                                            <button class="badge text-primary border-0">
+                                        <a href="/users/{{ $user->id }}/edit">
+                                            <button data-bs-target="{{ route('editEmployee', $user->id) }}" class="badge text-primary border-0">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                                     <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                                 </svg>
                                             </button>
-                                        </form>
+                                        </a>
                                     </div>
                                     
                                     <div class="col-1">
@@ -137,11 +145,5 @@
     </div>
 </div>
 
-
-
-@endsection
-
-@section('CSS')
-    <link rel="stylesheet" href="css/register.css">
 @endsection
 

@@ -14,16 +14,16 @@ class LoginController extends Controller
     }
 
     //login post
-    public function store(Request $request)
+    public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required|min:6',
-            'password' => 'required|min:6'
+            'username' => 'required',
+            'password' => 'required'
         ]);
 
         if(Auth::attempt($credentials)){
             $request -> session() -> regenerate();
-            return redirect()->intended('users');
+            return redirect()->intended('/users');
         }
 
         return back()->with('loginError', 'Login failed!!');

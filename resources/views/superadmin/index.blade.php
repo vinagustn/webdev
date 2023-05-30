@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto+Slab&display=swap" rel="stylesheet">
 
     {{-- CSS STYLE --}}
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     
     {{-- CSS and Scripts STYLE PER-PAGE --}}
     @yield('CSS')
@@ -47,7 +47,7 @@
         <ul>
             <li>
                 <a href="#" class="banner">
-                    <img src="images/logo.png" alt="">
+                    <img src="{{ asset('images/logo.png') }}" alt="">
                     <span class="nav-textban">
                         Peternakan Gunungkelir Cipta Mandiri
                     </span>
