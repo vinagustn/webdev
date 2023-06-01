@@ -36,10 +36,11 @@ class UserController extends Controller
 
 
     //viewed edit page
-    public function edit(User $user)
+    public function edit($id)
     {
+        $users = User::find($id);
         return view('editLayouts.editEmployee', [
-            'user' => $user,
+            'users' => $users,
             'tittle' => 'employees'
         ]);
     }

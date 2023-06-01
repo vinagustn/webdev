@@ -16,15 +16,15 @@
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label">Nama</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Nama" value="{{ old('name'), $user->name }}">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Nama" value="{{ old('name') ?? $users->name }}">
                 </div>
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="{{ old('username'), $user->username }}">
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="{{ old('username') ?? $users->username }}">
                 </div>
                 <div class="mb-4">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="password">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                 </div>
                  
                 <button type="submit" class="btn btn-primary float-end">Save</button>

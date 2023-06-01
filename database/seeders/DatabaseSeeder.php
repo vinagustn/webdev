@@ -28,5 +28,16 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('password')
             ]);
         }
+
+        for ($i=1; $i <= 100; $i++) { 
+            DB::table('breedings')->insert([
+                'gender' => $faker->randomElement(['Jantan', 'Betina']),
+                'umur' => $faker->randomDigit,
+                'tinggi' => $faker->randomDigit,
+                'panjang_bdn' => $faker->randomDigit,
+                'lingkar' => $faker->randomDigit,
+                'pj_telinga' => $faker->randomDigit
+            ]);
+        }
     }
 }

@@ -28,8 +28,12 @@ Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('editEmplo
 Route::patch('/users/{id}/edit', [UserController::class, 'update'])->name('updateEmployee');
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('deleteEmployee');
 
-//data kambing route
+//breeding route
 Route::get('/input', [BreedingController::class, 'index']);
 Route::post('/input', [BreedingController::class, 'store']);
+Route::get('/list', [BreedingController::class, 'show']);
+Route::get('/list/{id}/edit', [BreedingController::class, 'edit']);
+Route::patch('/list/{id}/edit', [BreedingController::class, 'update']);
+Route::delete('list/{id}', [BreedingController::class, 'destroy']);
 
 // Route::resource('/users', UserController::class);
