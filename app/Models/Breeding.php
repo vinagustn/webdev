@@ -22,4 +22,10 @@ class Breeding extends Model
     protected $casts = [
         'gender' => EGender::class
     ];
+
+    // relation
+    public function perkawinan()
+    {
+        return $this->hasMany(Marriage::class);
+    }
 }

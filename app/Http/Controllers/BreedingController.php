@@ -13,7 +13,7 @@ class BreedingController extends Controller
     //viewed
     public function index()
     {
-        $genders = EGender::values();
+        $genders = EGender::cases();
         return view('layouts.input', [
             'genders' => $genders,
             'tittle' => 'Input Data'
@@ -49,7 +49,7 @@ class BreedingController extends Controller
 
     public function edit($id)
     {
-        $genders = EGender::values();
+        $genders = EGender::cases();
         $put = Breeding::find($id);
         return view('editLayouts.editBreedings', [
             'genders' => $genders,

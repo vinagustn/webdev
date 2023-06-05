@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BreedingController;
+use App\Http\Controllers\MarriageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,11 @@ Route::get('/list/{id}/edit', [BreedingController::class, 'edit']);
 Route::patch('/list/{id}/edit', [BreedingController::class, 'update']);
 Route::delete('list/{id}', [BreedingController::class, 'destroy']);
 
+//mariage route
+Route::get('/inputKawin', [MarriageController::class, 'index']);
+Route::post('/inputKawin', [MarriageController::class, 'store'])->name('inputKawin');
+Route::get('/listKawin', [MarriageController::class, 'show']);
+Route::get('/listKawin/{id}/edit', [MarriageController::class, 'edit']);
+Route::patch('/listKawin/{id}/edit', [MarriageController::class, 'update']);
+Route::delete('/listKawin/{id}', [MarriageController::class, 'destroy']);
 // Route::resource('/users', UserController::class);

@@ -4,13 +4,15 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Enum\EGender;
+use App\Enum\EStatus;
+use Faker\Factory as Faker;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\UserController;
-
-use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,7 +33,7 @@ class DatabaseSeeder extends Seeder
 
         for ($i=1; $i <= 100; $i++) { 
             DB::table('breedings')->insert([
-                'gender' => $faker->randomElement(['Jantan', 'Betina']),
+                'gender' => $faker->randomElement(EGender::cases()),
                 'umur' => $faker->randomDigit,
                 'tinggi' => $faker->randomDigit,
                 'panjang_bdn' => $faker->randomDigit,

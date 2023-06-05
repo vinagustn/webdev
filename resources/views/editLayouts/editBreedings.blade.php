@@ -4,9 +4,9 @@
 <div class="container m-3">
     <div class="d-grip gap-4 d-md-block">
         <a href="/input" type="button" class="btn btn-outline-primary active">Data Breeding</a>
-        <a href="/input#kawin" type="button" class="btn btn-outline-primary">Data Perkawinan</a>
-        <a href="/input#kelahiran" type="button" class="btn btn-outline-primary">Data Kelahiran</a>
-        <a href="/input#kesehatan" type="button" class="btn btn-outline-primary">Data Kesehatan</a>
+        <a href="/inputKawin" type="button" class="btn btn-outline-primary">Data Perkawinan</a>
+        <a href="/inputLahir" type="button" class="btn btn-outline-primary">Data Kelahiran</a>
+        <a href="/inputSehat" type="button" class="btn btn-outline-primary">Data Kesehatan</a>
     </div>
 
     <div class="alert alert-info mt-3 pb-1" role="alert">
@@ -18,13 +18,6 @@
             </li>
         </ul>
     </div>
-
-    @if ($errors->any())
-    <div class="alert alert-danger" role="alert">
-        <strong>Whoops!</strong> Terdapat masalah saat input data. Perhatikan informasi yang tertera ya!!<br><br>
-        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
 
     @if ($message = Session::get('success'))
     <div class="alert alert-success alert-block mt-3">
@@ -45,8 +38,8 @@
                     <span class="input-group-text size-chart "  id="" style="width: 150px">Jenis Kelamin</span>
                     <select class="form-select @error('gender') is-invalid @enderror" aria-label="Jenis Kelamin" name="gender">
                         <option>Choose</option>
-                        @foreach ($genders as $name=>$value)
-                            <option value="{{ $name }}" {{ $put->gender == $name ? 'selected' : 'selected' }}>{{ $value }}</option>
+                        @foreach ($genders as $opt)
+                            <option value="{{ $opt->value }}">{{ $opt->value }}</option>
                         @endforeach
                         
                         @error('gender')

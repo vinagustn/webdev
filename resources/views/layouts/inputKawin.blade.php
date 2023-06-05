@@ -4,20 +4,10 @@
 
 <div class="container m-3">
     <div class="d-grip gap-4 d-md-block">
-        <a href="/input" type="button" class="btn btn-outline-primary active">Data Breeding</a>
-        <a href="/inputKawin" type="button" class="btn btn-outline-primary">Data Perkawinan</a>
+        <a href="/input" type="button" class="btn btn-outline-primary">Data Breeding</a>
+        <a href="/inputKawin" type="button" class="btn btn-outline-primary active">Data Perkawinan</a>
         <a href="/inputLahir" type="button" class="btn btn-outline-primary">Data Kelahiran</a>
         <a href="/inputSehat" type="button" class="btn btn-outline-primary">Data Kesehatan</a>
-    </div>
-
-    <div class="alert alert-info mt-3 pb-1" role="alert">
-        <strong>Penting !!!</strong>
-        <ul>
-            <li>Umur dituliskan berdasarkan hitungan <strong>bulan</strong>, bukan tahun.</li>
-            <li>Penulisan tinggi badan, panjang badan, lingkar dada, serta panjang telinga
-                <strong>menggunakan titik</strong> sebagai pengganti koma dengan <strong>satuan sentimeter (cm).</strong>
-            </li>
-        </ul>
     </div>
 
     @if ($message = Session::get('success'))
@@ -27,78 +17,33 @@
     </div>
     @endif
 
-    <div class="card mt-2">
+    <div class="card mt-3">
         <div class="card-header" style="background: #435d7d">
-            <h2 style="color: white">Input <b>Breeding</b></h2>
+            <h2 style="color: white">Input <b>Data Kawin</b></h2>
         </div>
         <div class="card-body">
-            <form action="/input" method="POST" class="m-4">
+            <form class="m-4" action="/inputKawin" method="POST">
                 @csrf
-                <div class="input-group mb-3">
-                    <span class="input-group-text size-chart "  id="" style="width: 150px">Jenis Kelamin</span>
-                    <select class="form-select @error('gender') is-invalid @enderror" aria-label="Jenis Kelamin" name="gender">
+                <div class="input-group mt-3 mb-3">
+                    <span class="input-group-text size-chart" style="width: 150px" id="">Tanggal Kawin</span>
+                    <input type="date" class="form-control" name="tgl_kawin" id="tgl_kawin" aria-label="tgl_kawin" aria-describedby="tgl_kawin">
+                </div>
+                <div class="input-group mt-3 mb-3">
+                    <span class="input-group-text size-chart" style="width: 150px" id="">Id Jantan</span>
+                    <input type="text" class="form-control" name="id_jantan" id="id_jantan" aria-label="id_jantan" aria-describedby="id_jantan">
+                </div>
+                <div class="input-group mt-3 mb-3">
+                    <span class="input-group-text size-chart"  style="width: 150px" id="">Id Betina</span>
+                    <input type="text" class="form-control" name="id_betina" id="id_betina" aria-label="id_betina" aria-describedby="id_betina">
+                </div>
+                <div class="input-group mt-3 mb-3">
+                    <span class="input-group-text size-chart" style="width: 150px" id="">Status</span>
+                    <select name="status" class="form-select">
                         <option>Choose</option>
-                        @foreach ($genders as $gender)
-                            <option value="{{ $gender->value }}">{{ $gender->value }}</option>
-                        @endforeach
-                        
-                        @error('gender')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-
+                    @foreach ($statuses as $status)
+                        <option value="{{ $status->value }}">{{ $status->value }}</option>
+                    @endforeach
                     </select>
-                </div>
-                <div class="input-group mt-3 mb-3">
-                    <span class="input-group-text size-chart" id="" style="width: 150px">Umur</span>
-                    <input type="text" class="form-control  @error('umur') is-invalid @enderror" name="umur" aria-label="umur" aria-describedby="umur" placeholder="12" value="{{ old('umur') }}">
-                    <span class="input-group-text size-expl" style="width: 100px">bulan</span>
-                    @error('umur')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="input-group mt-3 mb-3">
-                    <span class="input-group-text size-chart" id="" style="width: 150px">Tinggi Badan</span>
-                    <input type="text" class="form-control  @error('tinggi') is-invalid @enderror" name="tinggi" aria-label="tinggi" aria-describedby="tinggi" placeholder="190" value="{{ old('tinggi') }}">
-                    <span class="input-group-text size-expl" style="width: 100px">cm</span>
-                    @error('tinggi')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="input-group mt-3 mb-3">
-                    <span class="input-group-text size-chart" id="" style="width: 150px">Panjang Badan</span>
-                    <input type="text" class="form-control  @error('panjang_bdn') is-invalid @enderror" name="panjang_bdn" aria-label="panjang_bdn" aria-describedby="panjang_bdn" placeholder="180.7" value="{{ old('panjang_bdn') }}">
-                    <span class="input-group-text size-expl" style="width: 100px">cm</span>
-                    @error('panjang_bdn')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="input-group mt-3 mb-3">
-                    <span class="input-group-text size-chart" id="" style="width: 150px">Lingkar Dada</span>
-                    <input type="text" class="form-control  @error('lingkar') is-invalid @enderror" name="lingkar" aria-label="lingkar" aria-describedby="lingkar" placeholder="180" value="{{ old('lingkar') }}">
-                    <span class="input-group-text size-expl" style="width: 100px">cm</span>
-                    @error('lingkar')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="input-group mt-3 mb-4">
-                    <span class="input-group-text size-chart" id="" style="width: 150px">Panjang Telinga</span>
-                    <input type="text" class="form-control  @error('pj_telinga') is-invalid @enderror" name="pj_telinga" aria-label="pj_telinga" aria-describedby="pj_telinga" placeholder="190.0" value="{{ old('pj_telinga') }}">
-                    <span class="input-group-text size-expl" style="width: 100px">cm</span>
-                    @error('pj_telinga')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
                 </div>
                 <input type="submit" class="btn btn-primary float-end" value="Save">
             </form>
@@ -221,8 +166,4 @@
         </div>
         <input type="submit" class="btn btn-primary saving" value="Save">
     </div> --}}
-@endsection
-
-@section('CSS')
-    {{-- <link rel="stylesheet" href="css/page.css"> --}}
 @endsection
