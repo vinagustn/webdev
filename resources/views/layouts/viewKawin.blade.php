@@ -26,10 +26,11 @@
                     <thead>
                       <tr>
                         <th scope="col">No</th>
+                        <th scope="col">ID Perkawinan</th>
                         <th scope="col">Tanggal Perkawinan</th>
                         <th scope="col">ID Jantan</th>
                         <th scope="col">ID Betina</th>
-                        <th scope="col">Satatus</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
@@ -41,6 +42,7 @@
                         <tr>
                             <th scope="row">{{ $i }}</th>
                             <td>{{ $marriage->id }}</td>
+                            <td>{{ $marriage->tgl_kawin }}</td>
                             <td>{{ $marriage->id_jantan }}</td>
                             <td>{{ $marriage->id_betina }}</td>
                             <td>{{ $marriage->status }}</td>

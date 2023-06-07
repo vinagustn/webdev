@@ -41,7 +41,7 @@
                     <select name="status" class="form-select">
                         <option>Choose</option>
                     @foreach ($statuses as $status)
-                        <option value="{{ $status->value }}">{{ $status->value }}</option>
+                        <option value="{{ $status->name }}">{{ $status->value }}</option>
                     @endforeach
                     </select>
                 </div>

@@ -4,10 +4,10 @@
 
 <div class="container m-3">
     <div class="d-grip gap-4 d-md-block">
-        <a href="/input" type="button" class="btn btn-outline-primary">Data Breeding</a>
-        <a href="/inputKawin" type="button" class="btn btn-outline-primary active">Data Perkawinan</a>
-        <a href="/inputLahir" type="button" class="btn btn-outline-primary">Data Kelahiran</a>
-        <a href="/inputSehat" type="button" class="btn btn-outline-primary">Data Kesehatan</a>
+        <a href="/list" type="button" class="btn btn-outline-primary">Data Breeding</a>
+        <a href="/listKawin" type="button" class="btn btn-outline-primary active">Data Perkawinan</a>
+        <a href="/listLahir" type="button" class="btn btn-outline-primary">Data Kelahiran</a>
+        <a href="/listSehat" type="button" class="btn btn-outline-primary">Data Kesehatan</a>
     </div>
 
     @if ($message = Session::get('success'))
@@ -27,15 +27,15 @@
                 @csrf
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text size-chart" style="width: 150px" id="">Tanggal Kawin</span>
-                    <input type="date" class="form-control" name="tgl_kawin" id="tgl_kawin" aria-label="tgl_kawin" aria-describedby="tgl_kawin" value="{{ old('tgl_kawin') ?? $marriage->tgl_kawin }}">
+                    <input type="date" class="form-control" name="tgl_kawin" id="tgl_kawin" aria-label="tgl_kawin" aria-describedby="tgl_kawin" value="{{ old('tgl_kawin') ?? $marriage->tgl_kawin }}" readonly>
                 </div>
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text size-chart" style="width: 150px" id="">Id Jantan</span>
-                    <input type="text" class="form-control" name="id_jantan" id="id_jantan" aria-label="id_jantan" aria-describedby="id_jantan" value="{{ old('id_jantan') ?? $marriage->id_jantan }}">
+                    <input type="text" class="form-control" name="id_jantan" id="id_jantan" aria-label="id_jantan" aria-describedby="id_jantan" value="{{ old('id_jantan') ?? $marriage->id_jantan }}" readonly>
                 </div>
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text size-chart"  style="width: 150px" id="">Id Betina</span>
-                    <input type="text" class="form-control" name="id_betina" id="id_betina" aria-label="id_betina" aria-describedby="id_betina" value="{{ old('id_betina') ?? $marriage->id_betina }}">
+                    <input type="text" class="form-control" name="id_betina" id="id_betina" aria-label="id_betina" aria-describedby="id_betina" value="{{ old('id_betina') ?? $marriage->id_betina }}" readonly>
                 </div>
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text size-chart" style="width: 150px" id="">Status</span>

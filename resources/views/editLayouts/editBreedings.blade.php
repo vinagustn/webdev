@@ -3,10 +3,10 @@
 @section('layouts')
 <div class="container m-3">
     <div class="d-grip gap-4 d-md-block">
-        <a href="/input" type="button" class="btn btn-outline-primary active">Data Breeding</a>
-        <a href="/inputKawin" type="button" class="btn btn-outline-primary">Data Perkawinan</a>
-        <a href="/inputLahir" type="button" class="btn btn-outline-primary">Data Kelahiran</a>
-        <a href="/inputSehat" type="button" class="btn btn-outline-primary">Data Kesehatan</a>
+        <a href="/list" type="button" class="btn btn-outline-primary active">Data Breeding</a>
+        <a href="/listKawin" type="button" class="btn btn-outline-primary">Data Perkawinan</a>
+        <a href="/listLahir" type="button" class="btn btn-outline-primary">Data Kelahiran</a>
+        <a href="/listSehat" type="button" class="btn btn-outline-primary">Data Kesehatan</a>
     </div>
 
     <div class="alert alert-info mt-3 pb-1" role="alert">
@@ -36,19 +36,7 @@
                 @csrf
                 <div class="input-group mb-3">
                     <span class="input-group-text size-chart "  id="" style="width: 150px">Jenis Kelamin</span>
-                    <select class="form-select @error('gender') is-invalid @enderror" aria-label="Jenis Kelamin" name="gender">
-                        <option>Choose</option>
-                        @foreach ($genders as $opt)
-                            <option value="{{ $opt->value }}">{{ $opt->value }}</option>
-                        @endforeach
-                        
-                        @error('gender')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-
-                      </select>
+                    <input type="text" class="form-control  @error('gender') is-invalid @enderror" name="gender" aria-label="gender" aria-describedby="gender" placeholder="12" value="{{ old('gender') ?? $put->gender }}" readonly>
                 </div>
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text size-chart" id="" style="width: 150px">Umur</span>

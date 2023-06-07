@@ -30,10 +30,7 @@
                 <a href="" class="navbar-brand tittle">
                     {{ $tittle }}
                 </a>
-                <form class="d-flex me-3" role="search">
-                    <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                @yield('search')
             </div>
         </nav>
 

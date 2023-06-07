@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Enum\EUserStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
@@ -12,7 +13,8 @@ class UserController extends Controller
     //viewed
     public function index()
     {
-        $users = DB::table('users')->paginate(10);
+        $statuses = EUserStatus::cases();
+        $users = DB::table('users')->latest()->paginate(10);
         return view('layouts.register', [
             'users' => $users,
             'tittle' => 'employees'
@@ -25,7 +27,8 @@ class UserController extends Controller
         $validatedUser = $request->validate([
             'username' => 'required|min:6|max:20|unique:users',
             'name' => 'required|max:100',
-            'password'=> 'required|min:6'
+            'password'=> 'required|min:6',
+            'status' => [new Enum(EUserStatus::class)]
         ]);
 
 
@@ -52,6 +55,7 @@ class UserController extends Controller
         $users->name = $request->name;
         $users->username = $request->username;
         $users->password = $request->password;
+        $users->status = $request->status;
         $users->save();
         
         return redirect('/users')->with('success', 'Data berhasil diupdate!');
@@ -59,10 +63,10 @@ class UserController extends Controller
     }
 
     //delete
-    public function destroy($id)
-    {
-        User::where('id',$id)->delete();
-        return redirect('/users')->with('success', 'Data telah dihapus!');
-    }
+    // public function destroy($id)
+    // {
+    //     User::where('id',$id)->delete();
+    //     return redirect('/users')->with('success', 'Data telah dihapus!');
+    // }
 
 }

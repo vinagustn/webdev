@@ -3,7 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Enums\ERole;
+use App\Enum\EUserStatus;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,6 +22,18 @@ class User extends Authenticatable
         'name',
         'username',
         'password',
+        'status'
+    ];
+
+    protected $casts = [
+        'status' => EUserStatus::class
+    ];
+    
+    //sorting
+    public $sortable = [
+        'name',
+        'username',
+        'status'
     ];
 
     /**

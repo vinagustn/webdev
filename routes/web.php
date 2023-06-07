@@ -27,7 +27,7 @@ Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
 Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('editEmployee');
 Route::patch('/users/{id}/edit', [UserController::class, 'update'])->name('updateEmployee');
-Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('deleteEmployee');
+// Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('deleteEmployee');
 
 //breeding route
 Route::get('/input', [BreedingController::class, 'index']);
