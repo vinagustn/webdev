@@ -21,16 +21,17 @@
             <h2 style="color: white">Data <b>Perkawinan</b></h2>
         </div>
         <div class="card-body">
+            @if ($marriages->count())
             <div style="overflow-x: scroll">
                 <table class="table table-hover">
                     <thead>
                       <tr>
                         <th scope="col">No</th>
-                        <th scope="col">ID Perkawinan</th>
-                        <th scope="col">Tanggal Perkawinan</th>
-                        <th scope="col">ID Jantan</th>
-                        <th scope="col">ID Betina</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">@sortablelink('id', 'ID Perkawinan', ['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
+                        <th scope="col">@sortablelink('tgl_kawin', 'Tanggal Perkawinan', ['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
+                        <th scope="col">@sortablelink('id_jantan', 'ID Jantan', ['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
+                        <th scope="col">@sortablelink('id_betina', 'ID Betina', ['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
+                        <th scope="col">@sortablelink('status', 'Status', ['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
@@ -78,11 +79,22 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-center mb-3">
-                    {!! $marriages->links() !!}
-                </div>
+                <div class="d-flex justify-content-center">
+                    {!! $marriages ->appends(\Request::except('page'))->render() !!}
+                </div> 
             </div>
+            @else
+            <p class="fw-bold text-center" style="font-family: cursive; font-size: 20px">Data tidak ditemukan.</p>
+            @endif
+            
         </div>
     </div>
 </div>
+@endsection
+
+@section('search')
+<form action="/listKawin" class="d-flex me-3" role="search">
+    <input class="form-control me-1" name="search" type="search" placeholder="Search..." aria-label="Search" value="{{ request('search') }}">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
 @endsection

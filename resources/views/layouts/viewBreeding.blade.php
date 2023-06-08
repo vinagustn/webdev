@@ -16,23 +16,34 @@
     </div>
     @endif
 
+    <div class="alert alert-info mt-3 pb-1" role="alert">
+        <strong>Penting !!!</strong>
+        <ul>
+            <li>Umur berdasarkan hitungan <strong>bulan</strong>, bukan tahun.</li>
+            <li>Satuan tinggi badan, panjang badan, lingkar dada, serta panjang telinga
+                menggunakan <strong>satuan sentimeter (cm).</strong>
+            </li>
+        </ul>
+    </div>
+    
     <div class="card mt-3">
         <div class="card-header"style="background: #435d7d">
             <h2 style="color: white">Data <b>Breeding</b></h2>
         </div>
         <div class="card-body">
+            @if ($breedings->count())
             <div style="overflow-x: scroll">
                 <table class="table table-hover">
                     <thead>
                       <tr>
                         <th scope="col">No</th>
-                        <th scope="col">ID Ternak</th>
-                        <th scope="col">Jenis Kelamin</th>
-                        <th scope="col">Umur</th>
-                        <th scope="col">Tinggi Badan</th>
-                        <th scope="col">Panjang Badan</th>
-                        <th scope="col">Lingkar Dada</th>
-                        <th scope="col">Panjang Telinga</th>
+                        <th scope="col">@sortablelink('id', 'ID Ternak', ['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
+                        <th scope="col">@sortablelink('gender','Jenis Kelamin',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
+                        <th scope="col">@sortablelink('umur','Umur',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
+                        <th scope="col">@sortablelink('tinggi','Tinggi Badan',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
+                        <th scope="col">@sortablelink('panjang_bdn','Panjang Badan',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
+                        <th scope="col">@sortablelink('lingkar','Lingkar Dada',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
+                        <th scope="col">@sortablelink('pj_telinga','Panjang Telinga',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
@@ -86,7 +97,17 @@
                     {!! $breedings->links() !!}
                 </div>
             </div>
+            @else
+            <p class="fw-bold text-center" style="font-family: cursive; font-size: 20px">Data tidak ditemukan.</p>
+            @endif
         </div>
     </div>
 </div>
+@endsection
+
+@section('search')
+<form action="/list" class="d-flex me-3" role="search">
+    <input class="form-control me-1" name="search" type="search" placeholder="Search..." aria-label="Search" value="{{ request('search') }}">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
 @endsection

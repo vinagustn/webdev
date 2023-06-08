@@ -6,10 +6,11 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Enum\EGender;
 use App\Enum\EStatus;
+use App\Enum\EUserStatus;
 use Faker\Factory as Faker;
 use Illuminate\Support\Str;
-use Illuminate\Database\Seeder;
 
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\UserController;
@@ -27,7 +28,8 @@ class DatabaseSeeder extends Seeder
             DB::table('users')->insert([
                 'name' => $faker->name,
                 'username' => $faker->username,
-                'password' => Hash::make('password')
+                'password' => Hash::make('password'),
+                'status' => $faker->randomElement(EUserStatus::cases())
             ]);
         }
 

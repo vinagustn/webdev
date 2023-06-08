@@ -4,8 +4,8 @@
 
 @if ($errors->any())
 <div class="alert alert-danger" role="alert">
-    <strong>Whoops!</strong> There were some problems with your input.<br><br>
     <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong>Whoops!</strong> There were some problems with your input.<br><br>
 </div>
 @endif
 
@@ -36,13 +36,15 @@
             </div>
         </div>
         <div class="card-body">
+            @if ($users->count())
+            <div style="overflow-x: scroll">
             <table class="table">
                 <thead>
                     <tr class="">
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Status</th>
+                        <th scope="col" width="70px">No</th>
+                        <th scope="col">@sortablelink('name', 'Nama',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
+                        <th scope="col">@sortablelink('username', 'Username',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
+                        <th scope="col">@sortablelink('status', 'Status',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -76,8 +78,13 @@
                 </tbody>
             </table>
             <div class="d-flex justify-content-center">
-                {!! $users->links() !!}
-            </div>
+                {!! $users ->appends(\Request::except('page'))->render() !!}
+            </div> 
+            </div> 
+            @else
+            <p class="fw-bold text-center" style="font-family: cursive; font-size: 20px">Data tidak ditemukan.</p>
+            @endif
+                      
         </div>
     </div>
 </div>
@@ -115,7 +122,7 @@
                     @enderror
 
                 </div>
-                <div class="form-floating">
+                <div class="form-floating mb-3">
                     <input type="password" name="password" class="form-control @error('password') is-invalid @enderror " id="password" placeholder="Password" required>
                     <label for="password">Password</label>
 
@@ -125,6 +132,14 @@
                         </div>
                     @enderror
 
+                </div>
+                <div class="form-floating">
+                    <select name="status" class="form-select" id="status">
+                        @foreach ($statuses as $status)
+                            <option value="{{ $status->value }}">{{ $status->value }}</option>
+                        @endforeach
+                    </select>
+                    <label for="status">Status Karyawan</label>
                 </div>
                 <button type="submit" class="btn btn-primary mt-4 float-end">Register</button>
             </form>
@@ -137,8 +152,8 @@
 @endsection
 
 @section('search')
-    <form class="d-flex me-3" role="search">
-        <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
+    <form action="/users" class="d-flex me-3" role="search">
+        <input class="form-control me-1" name="search" type="search" placeholder="Search..." aria-label="Search" value="{{ request('search') }}">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
 @endsection

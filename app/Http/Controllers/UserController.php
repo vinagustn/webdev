@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Enum\EUserStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules\Enum;
 use Symfony\Component\Console\Input\Input;
 
 class UserController extends Controller
@@ -13,9 +14,11 @@ class UserController extends Controller
     //viewed
     public function index()
     {
-        $statuses = EUserStatus::cases();
-        $users = DB::table('users')->latest()->paginate(10);
+        $users = User::sortable(['name', 'username', 'status'])->latest()->filter(request(['search']))->paginate(10);
+        $statuses = EUserStatus::cases(); 
+
         return view('layouts.register', [
+            'statuses' => $statuses,
             'users' => $users,
             'tittle' => 'employees'
         ]);
@@ -42,7 +45,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $users = User::find($id);
+        $statuses = EUserStatus::cases();
         return view('editLayouts.editEmployee', [
+            'statuses' => $statuses,
             'users' => $users,
             'tittle' => 'employees'
         ]);
@@ -54,13 +59,13 @@ class UserController extends Controller
         $users = User::find($id);
         $users->name = $request->name;
         $users->username = $request->username;
-        $users->password = $request->password;
         $users->status = $request->status;
         $users->save();
         
         return redirect('/users')->with('success', 'Data berhasil diupdate!');
 
     }
+
 
     //delete
     // public function destroy($id)

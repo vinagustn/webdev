@@ -159,6 +159,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Spatie\EloquentSortable\EloquentSortableServiceProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,

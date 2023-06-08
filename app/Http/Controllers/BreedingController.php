@@ -40,7 +40,10 @@ class BreedingController extends Controller
     //viewed all data
     public function show()
     {
-        $breedings = DB::table('breedings')->paginate(25);
+        $breedings = Breeding::sortable([
+            'id', 'gender', 'umur', 'tinggi', 'panjang_bdn', 'lingkar', 'pj_telinga'
+        ])->search(request(['search']))->paginate(25);
+        
         return view('layouts.viewBreeding', [
             'breedings' => $breedings,
             'tittle' => 'View data'

@@ -37,7 +37,9 @@ class MarriageController extends Controller
 
     public function show()
     {
-        $marriages = DB::table('marriages')->latest()->paginate(25);
+        $marriages = Marriage::sortable([
+            'id', 'tgl_kawin', 'id_jantan', 'id_betina', 'status'
+        ])->search(request(['search']))->latest()->paginate(25);
         return view('layouts.viewKawin', [
             'tittle' => 'view Data',
             'marriages' => $marriages
