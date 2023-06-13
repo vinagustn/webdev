@@ -51,14 +51,6 @@
                 </a>
             </li>
             <li>
-                <a href="/dashboard" class="a-menu">
-                    <i class="fa fa-bar-chart-o"></i>
-                    <span class="nav-text">
-                        Dashboard
-                    </span>
-                </a>
-            </li>
-            <li>
                 <a href="/notif" class="a-menu">
                     <i class="fa fa-bell-o"></i>
                     <span class="nav-text">Notification</span>
@@ -80,14 +72,6 @@
                     <i class="fa fa-list-alt"></i>
                     <span class="nav-text">
                         View Data
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/users" class="a-menu">
-                    <i class="fa fa-users"></i>
-                    <span class="nav-text">
-                        Users
                     </span>
                 </a>
             </li>

@@ -66,7 +66,6 @@ class UserController extends Controller
 
     }
 
-
     //delete
     // public function destroy($id)
     // {

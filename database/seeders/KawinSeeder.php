@@ -24,5 +24,14 @@ class KawinSeeder extends Seeder
                 'tgl_kawin' => $faker->date,
             ]);
         }
+
+        // for ($i=1; $i <= 100; $i++) { 
+        //     DB::table('births')->insert([
+        //         'gender_anak' => $faker->randomElement(EStatus::cases()),
+        //         'id_kawin' => $faker->numberBetween(1, 100),
+        //         'id_anak' => $faker->numberBetween(1, 100),
+        //         'tgl_lahir' => $faker->date,
+        //     ]);
+        // }
     }
 }

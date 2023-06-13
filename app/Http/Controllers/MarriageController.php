@@ -25,14 +25,14 @@ class MarriageController extends Controller
     {
         $validatedData = $request->validate([
             'tgl_kawin' => 'required',
-            'id_jantan' => 'required',
-            'id_betina' => 'required',
+            'id_jantan' => 'required|exists:breedings,id',
+            'id_betina' => 'required|exists:breedings,id',
             'status' => [new Enum(EStatus::class)]
         ]);
 
         Marriage::create($validatedData);
         
-        return redirect('/inputKawin')->with('success', 'Data perkawinan berhasil dibuat!');
+        return redirect('/perkawinan/input')->with('success', 'Data perkawinan berhasil dibuat!');
     }
 
     public function show()
@@ -67,12 +67,12 @@ class MarriageController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect('/listKawin')->with('success', 'Data berhasil diubah!!');
+        return redirect('/perkawinan/list')->with('success', 'Data berhasil diubah!!');
     }
 
     public function destroy($id)
     {
         Marriage::where('id', $id)->delete();
-        return redirect('/listKawin')->with('success', 'Data berhasil dihapus!');
+        return redirect('/perkawinan/list')->with('success', 'Data berhasil dihapus!');
     }
 }

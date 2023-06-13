@@ -34,7 +34,7 @@ class BreedingController extends Controller
 
         Breeding::create($validated);
 
-        return redirect('/input')->with('success', 'Input breeding create successfully!');
+        return redirect('/breeding/input')->with('success', 'Input breeding create successfully!');
     }
 
     //viewed all data
@@ -72,13 +72,13 @@ class BreedingController extends Controller
         $breed->pj_telinga = $request->pj_telinga;
         $breed->save();
 
-        return redirect('/list')->with('success', 'Data berhasil diubah!');
+        return redirect('/breeding/list')->with('success', 'Data berhasil diubah!');
     }
 
     //delete data
     public function destroy($id)
     {
         Breeding::where('id', $id)->delete();
-        return redirect('/list')->with('success', 'Data berhasil dihapus!');
+        return redirect('/breeding/list')->with('success', 'Data berhasil dihapus!');
     }
 }

@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BirthController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HealthController;
 use App\Http\Controllers\BreedingController;
 use App\Http\Controllers\MarriageController;
 
@@ -29,19 +31,36 @@ Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('editEmplo
 Route::patch('/users/{id}/edit', [UserController::class, 'update'])->name('updateEmployee');
 // Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('deleteEmployee');
 
+// Route::resource('breeding', BreedingController::class);
+
 //breeding route
-Route::get('/input', [BreedingController::class, 'index']);
-Route::post('/input', [BreedingController::class, 'store']);
-Route::get('/list', [BreedingController::class, 'show']);
-Route::get('/list/{id}/edit', [BreedingController::class, 'edit']);
-Route::patch('/list/{id}/edit', [BreedingController::class, 'update']);
-Route::delete('list/{id}', [BreedingController::class, 'destroy']);
+Route::get('/breeding/input', [BreedingController::class, 'index']);
+Route::post('/breeding/input', [BreedingController::class, 'store']);
+Route::get('/breeding/list', [BreedingController::class, 'show']);
+Route::get('/breeding/{id}/edit', [BreedingController::class, 'edit']);
+Route::patch('/breeding/{id}/edit', [BreedingController::class, 'update']);
+Route::delete('/breeding/list/{id}', [BreedingController::class, 'destroy']);
 
 //mariage route
-Route::get('/inputKawin', [MarriageController::class, 'index']);
-Route::post('/inputKawin', [MarriageController::class, 'store'])->name('inputKawin');
-Route::get('/listKawin', [MarriageController::class, 'show']);
-Route::get('/listKawin/{id}/edit', [MarriageController::class, 'edit']);
-Route::patch('/listKawin/{id}/edit', [MarriageController::class, 'update']);
-Route::delete('/listKawin/{id}', [MarriageController::class, 'destroy']);
-// Route::resource('/users', UserController::class);
+Route::get('/perkawinan/input', [MarriageController::class, 'index']);
+Route::post('/perkawinan/input', [MarriageController::class, 'store'])->name('inputKawin');
+Route::get('/perkawinan/list', [MarriageController::class, 'show']);
+Route::get('/perkawinan/{id}/edit', [MarriageController::class, 'edit']);
+Route::patch('/perkawinan/{id}/edit', [MarriageController::class, 'update']);
+Route::delete('/perkawinan/list/{id}', [MarriageController::class, 'destroy']);
+
+//healthiness
+Route::get('/kesehatan/input', [HealthController::class, 'create']);
+Route::post('/kesehatan/input', [HealthController::class, 'store']);
+Route::get('/kesehatan/list', [HealthController::class, 'show']);
+Route::get('/kesehatan/{id}/edit', [HealthController::class, 'edit']);
+Route::patch('/kesehatan/{id}/edit', [HealthController::class, 'update']);
+Route::delete('/kesehatan/list/{id}', [HealthController::class, 'destroy']);
+
+//birth
+Route::get('/kelahiran/input', [BirthController::class, 'create']);
+Route::post('/kelahiran/input', [BirthController::class, 'store']);
+// Route::get('/kelahiran/list', [BirthController::class, 'show']);
+// Route::get('/kelahiran/{id}/edit', [BirthController::class, 'edit']);
+// Route::patch('/kelahiran/{id}/edit', [BirthController::class, 'update']);
+// Route::delete('/kelahiran/list/{id}', [BirthController::class, 'destroy']);

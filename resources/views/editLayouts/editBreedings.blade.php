@@ -3,10 +3,10 @@
 @section('layouts')
 <div class="container m-3">
     <div class="d-grip gap-4 d-md-block">
-        <a href="/list" type="button" class="btn btn-outline-primary active">Data Breeding</a>
-        <a href="/listKawin" type="button" class="btn btn-outline-primary">Data Perkawinan</a>
-        <a href="/listLahir" type="button" class="btn btn-outline-primary">Data Kelahiran</a>
-        <a href="/listSehat" type="button" class="btn btn-outline-primary">Data Kesehatan</a>
+        <a href="/breeding/list" type="button" class="btn btn-outline-primary active">Data Breeding</a>
+        <a href="/perkawinan/list" type="button" class="btn btn-outline-primary">Data Perkawinan</a>
+        <a href="/kelahiran/list" type="button" class="btn btn-outline-primary">Data Kelahiran</a>
+        <a href="/kesehatan/list" type="button" class="btn btn-outline-primary">Data Kesehatan</a>
     </div>
 
     <div class="alert alert-info mt-3 pb-1" role="alert">
@@ -89,7 +89,7 @@
                     @enderror
                 </div>
                 <input type="submit" class="btn btn-primary float-end" value="Save Change">
-                <a href="/list" class="btn btn-outline-secondary me-2 float-end" type="button">Back</a>
+                <a href="/breeding/list" class="btn btn-outline-secondary me-2 float-end" type="button">Back</a>
             </form>
         </div>
     </div>

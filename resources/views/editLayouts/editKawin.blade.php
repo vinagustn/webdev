@@ -4,10 +4,10 @@
 
 <div class="container m-3">
     <div class="d-grip gap-4 d-md-block">
-        <a href="/list" type="button" class="btn btn-outline-primary">Data Breeding</a>
-        <a href="/listKawin" type="button" class="btn btn-outline-primary active">Data Perkawinan</a>
-        <a href="/listLahir" type="button" class="btn btn-outline-primary">Data Kelahiran</a>
-        <a href="/listSehat" type="button" class="btn btn-outline-primary">Data Kesehatan</a>
+        <a href="/breeding/list" type="button" class="btn btn-outline-primary">Data Breeding</a>
+        <a href="/perkawinan/list" type="button" class="btn btn-outline-primary active">Data Perkawinan</a>
+        <a href="/kelahiran/list" type="button" class="btn btn-outline-primary">Data Kelahiran</a>
+        <a href="/kesehatan/list" type="button" class="btn btn-outline-primary">Data Kesehatan</a>
     </div>
 
     @if ($message = Session::get('success'))
@@ -47,7 +47,7 @@
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary float-end">Save Change</button>
-                <a href="/listKawin" class="btn btn-outline-secondary me-2 float-end">Back</a> 
+                <a href="/perkawinan/list" class="btn btn-outline-secondary me-2 float-end">Back</a> 
             </form>
         </div>
     </div>

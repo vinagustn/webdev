@@ -4,10 +4,10 @@
 
 <div class="container m-3">
     <div class="d-grip gap-4 d-md-block">
-        <a href="/input" type="button" class="btn btn-outline-primary">Data Breeding</a>
-        <a href="/inputKawin" type="button" class="btn btn-outline-primary active">Data Perkawinan</a>
-        <a href="/inputLahir" type="button" class="btn btn-outline-primary">Data Kelahiran</a>
-        <a href="/inputSehat" type="button" class="btn btn-outline-primary">Data Kesehatan</a>
+        <a href="/breeding/input" type="button" class="btn btn-outline-primary">Data Breeding</a>
+        <a href="/perkawinan/input" type="button" class="btn btn-outline-primary active">Data Perkawinan</a>
+        <a href="/kelahiran/input" type="button" class="btn btn-outline-primary">Data Kelahiran</a>
+        <a href="/kesehatan/input" type="button" class="btn btn-outline-primary">Data Kesehatan</a>
     </div>
 
     @if ($message = Session::get('success'))
@@ -22,7 +22,7 @@
             <h2 style="color: white">Input <b>Data Kawin</b></h2>
         </div>
         <div class="card-body">
-            <form class="m-4" action="/inputKawin" method="POST">
+            <form class="m-4" action="/perkawinan/input" method="POST">
                 @csrf
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text size-chart" style="width: 150px" id="">Tanggal Kawin</span>
@@ -41,11 +41,11 @@
                     <select name="status" class="form-select">
                         <option>Choose</option>
                     @foreach ($statuses as $status)
-                        <option value="{{ $status->name }}">{{ $status->value }}</option>
+                        <option value="{{ $status->value }}">{{ $status->value }}</option>
                     @endforeach
                     </select>
                 </div>
-                <input type="submit" class="btn btn-primary float-end" value="Save">
+                <input type="submit" class="btn btn-primary float-end" value="Save" onclick="return confirm('Yakin data sudah benar?')">
             </form>
         </div>
     </div>

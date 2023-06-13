@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enum\EStatus;
+use App\Models\Birth;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,6 +35,11 @@ class Marriage extends Model
     public function breed()
     {
         return $this->belongsTo(Breeding::class);
+    }
+
+    public function kelahiran()
+    {
+        return $this->hasMany(Birth::class);
     }
 
     //searching
