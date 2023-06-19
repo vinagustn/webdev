@@ -20,12 +20,6 @@ class Birth extends Model
         'gender_anak'
     ];
 
-    protected $casts = [
-        'id_anak' => 'array',
-        'gender_anak' => 'array',
-        'gender_anak' => EGender::class
-    ];
-
     //sorting
     public $sortable = [
         'id',
@@ -36,7 +30,7 @@ class Birth extends Model
     //relation
     public function perkawinan()
     {
-        return $this->belongsTo(Marriage::class);
+        return $this->belongsTo(Marriage::class, 'id_kawin');
     }
 
     //searching
@@ -44,7 +38,10 @@ class Birth extends Model
     {
         $query->when($filters['search'] ?? false, function($query, $search){
             return $query->where('id', 'like', '%'. $search .'%')
-                         ->orWhere('id_kawin', 'like', '%'. $search .'%')
+                         ->orWhere('tgl_lahir', 'like', '%'. $search .'%')
+                        //  ->orWhere('tgl_kawin', 'like', '%'. $search .'%')
+                        //  ->orWhere('id_jantan', 'like', '%'. $search .'%')
+                        //  ->orWhere('id_betina', 'like', '%'. $search .'%')
                          ->orWhere('jml_anak', 'like', '%'. $search .'%');
         });
     }

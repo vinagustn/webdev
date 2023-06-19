@@ -12,32 +12,37 @@ class BirthController extends Controller
 {
     //get page
     public function create(){
-        $genders = EGender::cases();
         return view('layouts.inputLahir', [
-            'tittle' => 'input data',
-            'genders' => $genders
+            'tittle' => 'input data'
         ]);
     }
 
     //store data
     public function store(Request $request)
     {
-        $validator = [Validator::make($request->all(), [
+        $validated = $request->validate([
             'id_kawin' => 'required|exists:marriages,id',
             'tgl_lahir' => 'required',
-            'id_anak' => 'array',
-            'id_anak.*' => 'integer',
-            'gender_anak' => 'array',
-            'gender_Anak.*' => [new Enum(EGender::class), 'string']
-        ])];
+            'jml_anak' => 'required|integer',
+            'id_anak' => 'required',
+            'gender_anak' => 'required'
+        ]);
 
-        // for ($i=0; $i < collect($request->id_anak)->count(); $i++) { 
-        //     $validator->id_anak[$i] = $request->id_anak[$i];
-        //     $validator->gender_anak[$i] = $request->gender_anak[$i];
-        // }
-
-        Birth::create($validator);
+        Birth::create($validated);
 
         return redirect('/kelahiran/input')->with('success', 'Data kelahiran berhasil diinputkan!');
+    }
+
+    public function show()
+    {
+        $births = Birth::with('perkawinan')->sortable([
+            'id', 'id_kawin', 'tgl_lahir', 'jml_anak', 'tgl_kawin', 'id_betina', 'id_jantan'
+        ])->search(request(['search']))->paginate(25);
+
+        return view('layouts.viewBirth', [
+            'tittle' => 'view data',
+            'births' => $births,
+
+        ]);
     }
 }

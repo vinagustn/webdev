@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\BreedingController;
 use App\Http\Controllers\MarriageController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +61,9 @@ Route::delete('/kesehatan/list/{id}', [HealthController::class, 'destroy']);
 //birth
 Route::get('/kelahiran/input', [BirthController::class, 'create']);
 Route::post('/kelahiran/input', [BirthController::class, 'store']);
-// Route::get('/kelahiran/list', [BirthController::class, 'show']);
+Route::get('/kelahiran/list', [BirthController::class, 'show']);
 // Route::get('/kelahiran/{id}/edit', [BirthController::class, 'edit']);
 // Route::patch('/kelahiran/{id}/edit', [BirthController::class, 'update']);
 // Route::delete('/kelahiran/list/{id}', [BirthController::class, 'destroy']);
+
+Route::get('/dashboard', [DashboardController::class, 'index']);

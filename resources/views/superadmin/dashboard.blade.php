@@ -1,39 +1,6 @@
 @extends('superadmin.index')
 
 @section('layouts')
-    {{-- <div class="row mb-3">
-        <div class="col"> 
-            <div class="card bg-info" style="border: 1px solid;">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <p style="font-size: 30px; font-weight:bolder">{{ $isActive }}</p>
-                            <p>Jumlah Karyawan Aktif</p>
-                        </div>
-                        <div class="col">
-                            <i class="bi bi-people-fill" style="font-size: 70px; opacity: 40%; float:right;"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>  
-        <div class="col"> 
-            <div class="card" style="opacity: 50%;border: 1px solid; background: rgb(168, 168, 168)">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <p style="font-size: 30px; font-weight:bolder">{{ $isInactive }}</p>
-                            <p>Jumlah Karyawan Tidak Aktif</p>
-                        </div>
-                        <div class="col">
-                            <i class="bi bi-people-fill" style="font-size: 70px; opacity: 40%; float:right;"></i>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>  
-    </div> --}}
     <div class="row">
         <div class="col-lg-3"> 
             <div class="card" style="border: 1px solid; background: #1F6E8C">
@@ -129,33 +96,46 @@
                             <p style="color: white">Data Kesehatan</p>
                         </div>
                         <div class="col">
-                            <i class="bi bi-activity" style="font-size: 70px; opacity: 40%; float:right; color:white"></i>
+                            <svg width="70px" style="opacity: 40%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                                <g id="SVGRepo_iconCarrier"> <path d="M22 7.81V12.5H17.92C17.8 12.49 17.54 12.34 17.48 12.23L16.44 10.26C16.03 9.48 15.32 9.04 14.56 9.08C13.8 9.12 13.15 9.63 12.82 10.46L11.44 13.92L11.24 13.4C10.75 12.13 9.35 11.17 7.97 11.17L2 11.2V7.81C2 4.17 4.17 2 7.81 2H16.19C19.83 2 22 4.17 22 7.81Z" fill="#ffffff"/> <path d="M22 16.1887V13.9987H17.92C17.25 13.9987 16.46 13.5187 16.15 12.9287L15.11 10.9587C14.83 10.4287 14.43 10.4587 14.21 11.0087L11.91 16.8187C11.66 17.4687 11.24 17.4687 10.98 16.8187L9.84 13.9387C9.57 13.2387 8.73 12.6687 7.98 12.6687L2 12.6987V16.1887C2 19.7687 4.1 21.9287 7.63 21.9887C7.74 21.9987 7.86 21.9987 7.97 21.9987H15.97C16.12 21.9987 16.27 21.9987 16.41 21.9887C19.92 21.9087 22 19.7587 22 16.1887Z" fill="#ffffff"/> <path d="M2.0007 12.6992V16.0092C1.9807 15.6892 1.9707 15.3492 1.9707 14.9992V12.6992H2.0007Z" fill="#ffffff"/> </g>
+                            </svg>
                         </div>
-                        
                     </div>
                 </div>
             </div>
         </div> 
     </div>
-    <div class="card">
-        <div class="header-card">My Pie Chart</div>
-        <canvas id="#pieChart" aria-label="chart" height="100px" width="100px"></canvas>
+    <div class="row mt-2">
+        <div class="col-sm-5">
+            <div id="chartContainer"></div>
+        </div>
+        <div class="col-sm-5">
+            <div id="chart-line"></div>
+        </div>
     </div>
-    <script>
-        var options = {
-        chart: {
-            height: 350,
-            type: "pie",
-        },
-        dataLabels: {
-            enabled: false
-        },
-        series: [44, 55, 13, 33]
-        }
-        var chart = new ApexCharts(
-        document.querySelector("#pieChart"),
-        options
-        );
-        chart.render();
-    </script>
 @endsection
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Draw the chart and set the chart values
+    function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Status', 'Data'],
+        ['Proses', {{ $isProcess }}],
+        ['Hamil', {{ $isPregnant }}],
+        ['Tidak Hamil', {{ $isUnpreg }}]
+    ]);
+
+    // Optional; add a title and set the width and height of the chart
+    var options = {'title':'Data Perkawinan berdasarkan Status', 'width':550, 'height':400};
+
+    // Display the chart inside the <div> element with id="chartContainer"
+    var chart = new google.visualization.PieChart(document.getElementById('chartContainer'));
+    chart.draw(data, options);
+    }
+</script>

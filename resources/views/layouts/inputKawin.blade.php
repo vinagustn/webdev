@@ -25,25 +25,40 @@
             <form class="m-4" action="/perkawinan/input" method="POST">
                 @csrf
                 <div class="input-group mt-3 mb-3">
-                    <span class="input-group-text size-chart" style="width: 150px" id="">Tanggal Kawin</span>
+                    <span class="input-group-text size-chart  @error('tgl_kawin') is-invalid @enderror" style="width: 150px" id="">Tanggal Kawin</span>
                     <input type="date" class="form-control" name="tgl_kawin" id="tgl_kawin" aria-label="tgl_kawin" aria-describedby="tgl_kawin">
                 </div>
                 <div class="input-group mt-3 mb-3">
-                    <span class="input-group-text size-chart" style="width: 150px" id="">Id Jantan</span>
+                    <span class="input-group-text size-chart  @error('id_jantan') is-invalid @enderror" style="width: 150px" id="">Id Jantan</span>
                     <input type="text" class="form-control" name="id_jantan" id="id_jantan" aria-label="id_jantan" aria-describedby="id_jantan">
+                    @error('id_jantan')
+                        <div class="invalid-feedback">
+                            ID ternak tidak terdaftar
+                        </div>
+                    @enderror
                 </div>
                 <div class="input-group mt-3 mb-3">
-                    <span class="input-group-text size-chart"  style="width: 150px" id="">Id Betina</span>
+                    <span class="input-group-text size-chart  @error('id_betina') is-invalid @enderror"  style="width: 150px" id="">Id Betina</span>
                     <input type="text" class="form-control" name="id_betina" id="id_betina" aria-label="id_betina" aria-describedby="id_betina">
+                    @error('id_betina')
+                    <div class="invalid-feedback">
+                        ID ternak tidak terdaftar
+                    </div>
+                @enderror
                 </div>
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text size-chart" style="width: 150px" id="">Status</span>
-                    <select name="status" class="form-select">
+                    <select name="status" class="form-select  @error('status') is-invalid @enderror">
                         <option>Choose</option>
                     @foreach ($statuses as $status)
                         <option value="{{ $status->value }}">{{ $status->value }}</option>
                     @endforeach
                     </select>
+                    @error('status')
+                    <div class="invalid-feedback">
+                        Mohon pilih status
+                    </div>
+                @enderror
                 </div>
                 <input type="submit" class="btn btn-primary float-end" value="Save" onclick="return confirm('Yakin data sudah benar?')">
             </form>
