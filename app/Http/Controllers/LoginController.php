@@ -22,8 +22,15 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt($credentials)){
+            // if(Auth::user()->role == 'superadmin' && Auth::user()->status == 'Active'){
+            //     $request -> session() -> regenerate();
+            //     return redirect()->intended('/dashboard');
+            // }else if(Auth::user()->role == 'karyawan' && Auth::user()->status == 'Active'){
+            //     $request -> session() -> regenerate();
+            //     return redirect()->intended('/breeding/input');
+            // }
             $request -> session() -> regenerate();
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/breeding/input');
         }
 
         return back()->with('loginError', 'Login failed!!');

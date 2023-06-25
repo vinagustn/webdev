@@ -75,4 +75,20 @@ class MarriageController extends Controller
         Marriage::where('id', $id)->delete();
         return redirect('/perkawinan/list')->with('success', 'Data berhasil dihapus!');
     }
+
+    //for notif
+    public function showNotif() 
+    {
+        $marriage = Marriage::all();
+        $marriage->tgl_kawin->addDays(25);
+        if($marriage->status == "Hamil"){
+            $marriage->tgl_kawin->addDays(150);
+        }
+        $notifications = marriage()->unreadNotifications;
+
+        return view('layouts.notif', [
+            'tittle' => 'Notification',
+
+        ]);
+    }
 }

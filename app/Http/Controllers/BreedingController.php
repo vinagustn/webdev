@@ -63,6 +63,15 @@ class BreedingController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'gender' => [new Enum(EGender::class)],
+            'umur' => 'required',
+            'tinggi' => 'required|regex:/^[0-9]+(\.[0-9]{1,2})?$/',
+            'panjang_bdn' => 'required|regex:/^[0-9]+(\.[0-9]{1,2})?$/',
+            'lingkar' => 'required|regex:/^[0-9]+(\.[0-9]{1,2})?$/',
+            'pj_telinga' => 'required|regex:/^[0-9]+(\.[0-9]{1,2})?$/'
+        ]);
+        
         $breed = Breeding::find($id);
         $breed->gender = $request->gender;
         $breed->umur = $request->umur;

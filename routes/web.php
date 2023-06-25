@@ -21,18 +21,23 @@ use App\Http\Controllers\DashboardController;
 */
 
 //login logout route
-Route::get('/', [LoginController::class, 'index']);
+Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/', [LoginController::class, 'authenticate']);
 Route::get('logout', [LoginController::class, 'logout']);
 
-//user route
-Route::get('/users', [UserController::class, 'index']);
-Route::post('/users', [UserController::class, 'store']);
-Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('editEmployee');
-Route::patch('/users/{id}/edit', [UserController::class, 'update'])->name('updateEmployee');
-// Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('deleteEmployee');
+//superadmin middleware
+Route::middleware(['auth'])->group( function(){
+   //user route
+    Route::get('/users', [UserController::class, 'index']);
+    Route::post('/users', [UserController::class, 'store']);
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('editEmployee');
+    Route::patch('/users/{id}/edit', [UserController::class, 'update'])->name('updateEmployee'); 
 
-// Route::resource('breeding', BreedingController::class);
+    //dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+});
+
+
 
 //breeding route
 Route::get('/breeding/input', [BreedingController::class, 'index']);
@@ -66,4 +71,6 @@ Route::get('/kelahiran/list', [BirthController::class, 'show']);
 // Route::patch('/kelahiran/{id}/edit', [BirthController::class, 'update']);
 // Route::delete('/kelahiran/list/{id}', [BirthController::class, 'destroy']);
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+
+Route::get('/notification', [MarriageController::class, 'showNotif']);
+Route::post('/mark-as-read', [MarriageController::class, 'markAsReadNotif']);

@@ -56,6 +56,13 @@ class UserController extends Controller
     //edit employee
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'username' => 'required|min:6|max:20|unique:users',
+            'name' => 'required|max:100',
+            'password'=> 'required|min:6',
+            'status' => [new Enum(EUserStatus::class)]
+        ]);
+
         $users = User::find($id);
         $users->name = $request->name;
         $users->username = $request->username;

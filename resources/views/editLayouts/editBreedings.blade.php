@@ -54,7 +54,7 @@
                     <span class="input-group-text size-expl" style="width: 100px">cm</span>
                     @error('tinggi')
                         <div class="invalid-feedback">
-                            {{ $message }}
+                            Data tinggi badan invalid
                         </div>
                     @enderror
                 </div>
@@ -64,7 +64,7 @@
                     <span class="input-group-text size-expl" style="width: 100px">cm</span>
                     @error('panjang_bdn')
                         <div class="invalid-feedback">
-                            {{ $message }}
+                            Data panjang badan invalid
                         </div>
                     @enderror
                 </div>
@@ -74,7 +74,7 @@
                     <span class="input-group-text size-expl" style="width: 100px">cm</span>
                     @error('lingkar')
                         <div class="invalid-feedback">
-                            {{ $message }}
+                            Data lingkar dada invalid
                         </div>
                     @enderror
                 </div>
@@ -84,7 +84,7 @@
                     <span class="input-group-text size-expl" style="width: 100px">cm</span>
                     @error('pj_telinga')
                         <div class="invalid-feedback">
-                            {{ $message }}
+                            Data panjang telinga invalid
                         </div>
                     @enderror
                 </div>

@@ -37,7 +37,7 @@ class HealthController extends Controller
         ]);
     }
 
-    //create view
+    //create view edit
     public function edit($id)
     {
         $healths = Health::find($id);
