@@ -22,14 +22,6 @@
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="{{ old('username') ?? $users->username }}">
                 </div>
-                <div class="mb-4">
-                    <label for="status" class="form-label">Status Karyawan</label>
-                    <select name="status" class="form-select" id="status">
-                        @foreach ($statuses as $status)
-                            <option value="{{ $status->value }}">{{ $status->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
                 <button type="submit" class="btn btn-primary float-end">Save</button>
                 <a href="/users" class="btn btn-outline-secondary me-2 float-end">Back</a> 
             </form>

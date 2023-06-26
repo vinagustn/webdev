@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\EUserStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,19 +19,24 @@ class LoginController extends Controller
     {
         $credentials = $request->validate([
             'username' => 'required',
-            'password' => 'required'
+            'password' => 'required'    
         ]);
 
         if(Auth::attempt($credentials)){
-            // if(Auth::user()->role == 'superadmin' && Auth::user()->status == 'Active'){
-            //     $request -> session() -> regenerate();
-            //     return redirect()->intended('/dashboard');
-            // }else if(Auth::user()->role == 'karyawan' && Auth::user()->status == 'Active'){
-            //     $request -> session() -> regenerate();
-            //     return redirect()->intended('/breeding/input');
-            // }
-            $request -> session() -> regenerate();
-            return redirect()->intended('/breeding/input');
+            if(Auth::user()->role == 'superadmin'){
+                if(Auth::user()->status == 'Active'){
+                    $request -> session() -> regenerate();
+                    return redirect()->intended('/dashboard');
+                }
+                
+            }else if(Auth::user()->role == 'karyawan'){
+                $request -> session() -> regenerate();
+                return redirect()->intended('/breeding/input');
+            }
+
+
+            // $request -> session() -> regenerate();
+            // return redirect()->intended('/breeding/input');
         }
 
         return back()->with('loginError', 'Login failed!!');

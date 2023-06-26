@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class BirthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('cekRole:karyawan,superadmin');
+    }
+    
     //get page
     public function create(){
         return view('layouts.inputLahir', [

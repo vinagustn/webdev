@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->string('role')->default('karyawan');
-            $table->string('status');
             $table->rememberToken();
             $table->timestamps();
         });

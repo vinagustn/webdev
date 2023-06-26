@@ -10,6 +10,11 @@ use Illuminate\Validation\Rules\Enum;
 
 class MarriageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('cekRole:karyawan,superadmin');
+    }
+
     //landing page
     public function index()
     {

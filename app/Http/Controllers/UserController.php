@@ -11,14 +11,16 @@ use Symfony\Component\Console\Input\Input;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('cekRole:superadmin');
+    }
+
     //viewed
     public function index()
     {
         $users = User::sortable(['name', 'username', 'status'])->latest()->filter(request(['search']))->paginate(10);
-        $statuses = EUserStatus::cases(); 
-
         return view('layouts.register', [
-            'statuses' => $statuses,
             'users' => $users,
             'tittle' => 'employees'
         ]);
@@ -30,8 +32,7 @@ class UserController extends Controller
         $validatedUser = $request->validate([
             'username' => 'required|min:6|max:20|unique:users',
             'name' => 'required|max:100',
-            'password'=> 'required|min:6',
-            'status' => [new Enum(EUserStatus::class)]
+            'password'=> 'required|min:6'
         ]);
 
 
@@ -45,9 +46,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $users = User::find($id);
-        $statuses = EUserStatus::cases();
         return view('editLayouts.editEmployee', [
-            'statuses' => $statuses,
             'users' => $users,
             'tittle' => 'employees'
         ]);
@@ -59,14 +58,12 @@ class UserController extends Controller
         $this->validate($request, [
             'username' => 'required|min:6|max:20|unique:users',
             'name' => 'required|max:100',
-            'password'=> 'required|min:6',
-            'status' => [new Enum(EUserStatus::class)]
+            'password'=> 'required|min:6'
         ]);
 
         $users = User::find($id);
         $users->name = $request->name;
         $users->username = $request->username;
-        $users->status = $request->status;
         $users->save();
         
         return redirect('/users')->with('success', 'Data berhasil diupdate!');
@@ -74,10 +71,10 @@ class UserController extends Controller
     }
 
     //delete
-    // public function destroy($id)
-    // {
-    //     User::where('id',$id)->delete();
-    //     return redirect('/users')->with('success', 'Data telah dihapus!');
-    // }
+    public function destroy($id)
+    {
+        User::where('id',$id)->delete();
+        return redirect('/users')->with('success', 'Data karyawan telah dihapus!');
+    }
 
 }

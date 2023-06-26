@@ -3,7 +3,6 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Enum\EUserStatus;
 use Laravel\Sanctum\HasApiTokens;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Notifications\Notifiable;
@@ -25,10 +24,6 @@ class User extends Authenticatable
         'username',
         'password',
         'status'
-    ];
-
-    protected $casts = [
-        'status' => EUserStatus::class
     ];
     
     //sorting

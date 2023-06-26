@@ -10,6 +10,11 @@ use Illuminate\Validation\Rules\Enum;
 
 class BreedingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('cekRole:karyawan,superadmin');
+    }
+
     //viewed
     public function index()
     {

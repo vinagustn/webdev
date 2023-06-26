@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class HealthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('cekRole:karyawan,superadmin');
+    }
+
     public function create(){
         return view('layouts.inputSehat', [
             'tittle' => 'input data'

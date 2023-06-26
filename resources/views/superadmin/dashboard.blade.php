@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-sm-7">
                             <p style="font-size: 30px; font-weight:bolder; color: white">{{ $breed }}</p>
-                            <p style="color: white">Data Breeding</p>
+                            <p style="color: white">Data Ternak Breeding</p>
                         </div>
                         <div class="col">
                             <svg style="opacity: 40%; color:white" width="70px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +28,7 @@
                     <div class="row">
                         <div class="col-sm-7">
                             <p style="font-size: 30px; font-weight:bolder; color:white">{{ $marriages }}</p>
-                            <p style="color: white">Data Perkawinan</p>
+                            <p style="color: white">Data Perkawinan Kambing</p>
                         </div>
                         <div class="col">
                             <svg style="opacity: 40%" fill="white" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -69,7 +69,7 @@
                     <div class="row">
                         <div class="col-sm-7">
                             <p style="font-size: 30px; font-weight:bolder; color:white">{{ $births }}</p>
-                            <p style="color: white">Data Kelahiran</p>
+                            <p style="color: white">Data Kelahiran Kambing</p>
                         </div>
                         <div class="col">
                             <svg style="opacity: 40%" fill="white" height="70px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -101,7 +101,7 @@
                     <div class="row">
                         <div class="col-sm-7">
                             <p style="font-size: 30px; font-weight:bolder; color:white">{{ $healths }}</p>
-                            <p style="color: white">Data Kesehatan</p>
+                            <p style="color: white">Data Kesehatan Kambing</p>
                         </div>
                         <div class="col">
                             <svg width="70px" style="opacity: 40%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
