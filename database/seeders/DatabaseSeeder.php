@@ -24,16 +24,24 @@ class DatabaseSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        for($i=1; $i<=100; $i++){
+        User::create([
+            'name' => 'Superadmin',
+            'username' => 'admin',
+            'role' => 'superadmin',
+            'status' => true,
+            'password' => Hash::make('123123')
+        ]);
+
+        for ($i = 1; $i <= 5; $i++) {
             DB::table('users')->insert([
                 'name' => $faker->name,
                 'username' => $faker->username,
                 'password' => Hash::make('password'),
-                'status' => $faker->randomElement(EUserStatus::cases())
+                'status' => rand(0, 1)
             ]);
         }
 
-        for ($i=1; $i <= 100; $i++) { 
+        for ($i = 1; $i <= 5; $i++) {
             DB::table('breedings')->insert([
                 'gender' => $faker->randomElement(EGender::cases()),
                 'umur' => $faker->randomDigit,

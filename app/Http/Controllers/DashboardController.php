@@ -73,6 +73,22 @@ class DashboardController extends Controller
                     ->groupBy('id_ternak')
                     ->havingRaw('count(id_ternak) >= 1')
                     ->get();
+
+        $id_ternak_list = [];
+        $hitung_ternak = [];
+
+        foreach ($counts as $sampel) {
+            # code...
+            $id_ternak_list[] = $sampel->id_ternak;
+            $hitung_ternak[] = $sampel->qty;
+        }
+
+        $test = [
+            'hewan' => $id_ternak_list,
+            'counts' => $hitung_ternak
+        ];
+
+        // dd($test);
         
         return view('superadmin.dashboard', [
             'tittle' => 'dashboard',
@@ -102,7 +118,8 @@ class DashboardController extends Controller
             'dec' => $dec,
 
             'healths' => $healths,
-            'counts' => $counts
+            'counts' => $counts,
+            'test' => $test
         ]);
     }
 }

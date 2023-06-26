@@ -24,7 +24,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials)){
             if(Auth::user()->role == 'superadmin'){
-                if(Auth::user()->status == 'Active'){
+                if(Auth::user()->status == true){
                     $request -> session() -> regenerate();
                     return redirect()->intended('/dashboard');
                 }

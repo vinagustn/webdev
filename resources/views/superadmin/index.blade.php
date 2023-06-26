@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,11 @@
     <title>Sistem Recording</title>
 
     {{-- BOOTSTRAP --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+    </script>
 
     {{-- bootstrap icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -22,6 +26,7 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
 </head>
+
 <body>
 
     <div class="container-fluid con-style">
@@ -51,22 +56,22 @@
                 </a>
             </li>
             @if (auth()->user()->role == 'superadmin')
-            <li>
-                <a href="/dashboard" class="a-menu">
-                    <i class="fa fa-bar-chart-o"></i>
-                    <span class="nav-text">
-                        Dashboard
-                    </span>
-                </a>
-            </li>
+                <li>
+                    <a href="/dashboard" class="a-menu">
+                        <i class="fa fa-bar-chart-o"></i>
+                        <span class="nav-text">
+                            Dashboard
+                        </span>
+                    </a>
+                </li>
             @endif
-            
+
             <li>
                 <a href="/notif" class="a-menu">
                     <i class="fa fa-bell-o"></i>
                     <span class="nav-text">Notification</span>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        12
+                        {{ count(App\Models\Notif::where('read', 'show')->get()) }}
                     </span>
                 </a>
             </li>
@@ -107,6 +112,7 @@
             </li>
         </ul>
     </nav>
-    
+
 </body>
+
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enum\EStatus;
 use App\Models\Marriage;
+use App\Models\Notif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Enum;
@@ -36,7 +37,7 @@ class MarriageController extends Controller
         ]);
 
         Marriage::create($validatedData);
-        
+
         return redirect('/perkawinan/input')->with('success', 'Data perkawinan berhasil dibuat!');
     }
 
@@ -82,18 +83,24 @@ class MarriageController extends Controller
     }
 
     //for notif
-    public function showNotif() 
+    public function showNotif()
     {
-        $marriage = Marriage::all();
-        $marriage->tgl_kawin->addDays(25);
-        if($marriage->status == "Hamil"){
-            $marriage->tgl_kawin->addDays(150);
-        }
-        $notifications = marriage()->unreadNotifications;
+        // $marriage = Marriage::all();
+        // $marriage->tgl_kawin->addDays(25);
+        // if($marriage->status == "Hamil"){
+        //     $marriage->tgl_kawin->addDays(150);
+        // }
+        // $notifications = marriage()->unreadNotifications;
 
+        // return view('layouts.notif', [
+        //     'tittle' => 'Notification',
+
+        // ]);
+
+        $data = Notif::where('read', 'show')->get();
         return view('layouts.notif', [
-            'tittle' => 'Notification',
-
+            'tittle' => 'Notif',
+            'data' => $data
         ]);
     }
 }

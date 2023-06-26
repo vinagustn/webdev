@@ -8,6 +8,7 @@ use App\Http\Controllers\HealthController;
 use App\Http\Controllers\BreedingController;
 use App\Http\Controllers\MarriageController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NotifController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/', [LoginController::class, 'authenticate']);
 Route::get('logout', [LoginController::class, 'logout']);
 
+Route::get('reminder', [NotifController::class, 'reminder']);
+
 //superadmin middleware
 Route::middleware(['auth', 'cekRole:superadmin'])->group( function(){
    //user route
@@ -33,6 +36,7 @@ Route::middleware(['auth', 'cekRole:superadmin'])->group( function(){
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('editEmployee');
     Route::patch('/users/{id}/edit', [UserController::class, 'update'])->name('updateEmployee');
     Route::delete('/users/{id}/delete', [UserController::class, 'destroy']);
+    
 
     //dashboard
     Route::get('/dashboard', [DashboardController::class, 'index']);
@@ -51,7 +55,7 @@ Route::middleware(['auth', 'cekRole:karyawan,superadmin'])->group(function(){
     Route::get('/perkawinan/input', [MarriageController::class, 'index']);
     Route::post('/perkawinan/input', [MarriageController::class, 'store'])->name('inputKawin');
     Route::get('/perkawinan/list', [MarriageController::class, 'show']);
-    Route::get('/perkawinan/{id}/edit', [MarriageController::class, 'edit']);
+    Route::get('/perkawinan/{id}/edit', [MarriageController::class, 'edit'])->name('edit_kawin');
     Route::patch('/perkawinan/{id}/edit', [MarriageController::class, 'update']);
     Route::delete('/perkawinan/list/{id}', [MarriageController::class, 'destroy']);
 
@@ -76,4 +80,5 @@ Route::middleware(['auth', 'cekRole:karyawan,superadmin'])->group(function(){
 
 
 Route::get('/notification', [MarriageController::class, 'showNotif']);
+Route::get('/notification/{id}', [NotifController::class, 'readMessage'])->name('baca_notif');
 Route::post('/mark-as-read', [MarriageController::class, 'markAsReadNotif']);
