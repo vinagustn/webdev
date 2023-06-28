@@ -143,29 +143,42 @@
         <div class="collapsing" id="breeding"></div>
         <div class="collapsing" id="marriage"></div>
         <div class="collapsing mt-5" id="birth"></div>
-        <div class="collapsing mt-1" id="health">
+        <div class="collapsing mt-3" id="health">
             <div id="chart"></div>
             <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
             <script>
                 var options = {
                     series: [{
-                        data: @json($test['counts'])
+                        name: "Banyak data",
+                        data: @json($data_kesehatan['counts'])
                     }],
                     chart: {
                         type: 'bar',
-                        height: 350
+                        height: 450, width: 900
                     },
                     plotOptions: {
                         bar: {
                             borderRadius: 4,
-                            horizontal: true,
+                            horizontal: false,
                         }
+                    },
+                    title: {
+                        text: "Data Kesehatan Berdasarkan ID"
                     },
                     dataLabels: {
                         enabled: false
                     },
                     xaxis: {
-                        categories:  @json($test['hewan'])
+                        categories:  @json($data_kesehatan['hewan']),
+                        name: "ID Ternak Breeding",
+                        title: {
+                            text: "ID Ternak Breeding"
+                        }
+                    },
+                    yaxis: {
+                        title: {
+                            text: "Jumlah data"
+                        }
                     }
                 };
 
@@ -182,11 +195,11 @@
     });
     google.charts.setOnLoadCallback(drawMarriage);
     google.charts.setOnLoadCallback(drawBreed);
-    //   google.charts.setOnLoadCallback(drawHealth);
     google.charts.load('current', {
         'packages': ['bar']
     });
     google.charts.setOnLoadCallback(drawBirth);
+    // google.charts.setOnLoadCallback(drawHealth);
 
     function drawMarriage() {
         var data = google.visualization.arrayToDataTable([
@@ -263,17 +276,25 @@
         chart.draw(data, options);
     }
 
-    //   function drawHealth() {
+    // function drawHealth() {
     //     var data = google.visualization.arrayToDataTable([
-    //         ['ID Ternak', 'Jumlah Data'],
-
+    //         ['ID Ternak Breeding', 'Banyak Data'],
+    //         [@json($data_kesehatan['hewan']), @json($data_kesehatan['counts'])]
     //     ]);
 
     //     var options = {
-    //         title: 'Data Ternak Sakit Berdasarkan ID Ternak',
-    //         pieHole: 0.4,
+    //         chart: {
+    //             title: 'Data Kelahiran Ternak Tahun 2023'
+    //         },
+    //         bars: 'vertical',
+    //         'width': 800,
+    //         'height': 300,
+    //         legend: {
+    //             position: 'none'
+    //         }
     //     };
-    //     var chart = new google.visualization.PieChart(document.getElementById('health'));
+
+    //     var chart = new google.charts.Bar(document.getElementById('health'));
     //     chart.draw(data, options);
-    //   }
+    // }
 </script>

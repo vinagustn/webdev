@@ -15,9 +15,9 @@ class BirthSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create('id_ID');
-        for ($i=1; $i <= 100; $i++) { 
+        for ($i=1; $i <= 5; $i++) { 
             DB::table('births')->insert([
-                'id_kawin' => $faker->numberBetween(1, 100),
+                'id_kawin' => $faker->numberBetween(1, 5),
                 'tgl_lahir' => $faker->dateTimeThisYear(),
                 'jml_anak' => $faker->numberBetween(1,4),
                 'id_anak' => $faker->numerify(4),

@@ -15,9 +15,9 @@ class HealthSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create('id_ID');
-        for ($i=1; $i <= 100; $i++) { 
+        for ($i=1; $i <= 5; $i++) { 
             DB::table('healths')->insert([
-                'id_ternak' => $faker->numberBetween(1, 100),
+                'id_ternak' => $faker->numberBetween(1, 5),
                 'diseas_hst' => $faker->text(),
                 'treat_hst' => $faker->text()
             ]);

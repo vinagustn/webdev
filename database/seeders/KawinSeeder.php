@@ -16,12 +16,12 @@ class KawinSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create('id_ID');
-        for ($i=1; $i <= 100; $i++) { 
+        for ($i=1; $i <= 5; $i++) { 
             DB::table('marriages')->insert([
                 'status' => $faker->randomElement(EStatus::cases()),
-                'id_jantan' => $faker->numberBetween(1, 100),
-                'id_betina' => $faker->numberBetween(1, 100),
-                'tgl_kawin' => $faker->date,
+                'id_jantan' => $faker->numberBetween(1, 5),
+                'id_betina' => $faker->numberBetween(1, 5),
+                'tgl_kawin' => $faker->dateTimeThisYear(),
             ]);
         }
     }

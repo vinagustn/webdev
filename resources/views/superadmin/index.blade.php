@@ -67,7 +67,7 @@
             @endif
 
             <li>
-                <a href="/notif" class="a-menu">
+                <a href="/notification" class="a-menu">
                     <i class="fa fa-bell-o"></i>
                     <span class="nav-text">Notification</span>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">

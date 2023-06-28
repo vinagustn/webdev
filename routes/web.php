@@ -79,6 +79,6 @@ Route::middleware(['auth', 'cekRole:karyawan,superadmin'])->group(function(){
 // Route::delete('/kelahiran/list/{id}', [BirthController::class, 'destroy']);
 
 
-Route::get('/notification', [MarriageController::class, 'showNotif']);
+Route::get('/notification', [NotifController::class, 'reminder']);
 Route::get('/notification/{id}', [NotifController::class, 'readMessage'])->name('baca_notif');
-Route::post('/mark-as-read', [MarriageController::class, 'markAsReadNotif']);
+// Route::post('/mark-as-read', [MarriageController::class, 'markAsReadNotif']);

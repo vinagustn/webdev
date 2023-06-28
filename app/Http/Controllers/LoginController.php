@@ -23,13 +23,13 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt($credentials)){
-            if(Auth::user()->role == 'superadmin'){
-                if(Auth::user()->status == true){
+            if(Auth::user()->role == 'superadmin' && Auth::user()->status == true){
+                // if(Auth::user()->status == true){
                     $request -> session() -> regenerate();
                     return redirect()->intended('/dashboard');
-                }
+                // }
                 
-            }else if(Auth::user()->role == 'karyawan'){
+            }else if(Auth::user()->role == 'karyawan' && Auth::user()->status == true){
                 $request -> session() -> regenerate();
                 return redirect()->intended('/breeding/input');
             }

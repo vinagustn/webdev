@@ -3,10 +3,12 @@
 @section('layouts')
     <ul>
         @forelse ($data as $item)
-            <li>{{ $item->message }} pada ID Kawin <a href="{{ route('edit_kawin', $item->id_kawin) }}">Klik disini</a> | <a
-                    class="text-danger fw-bold" href="{{ route('baca_notif', $item->id) }}">Read Message</a></li>
+            <div class="alert alert-info" role="alert">
+                {{ $item->message }} <a href="{{ route('edit_kawin', $item->id_kawin) }}" class="alert-link">Pada ID Kawin {{ $item->id_kawin }}</a>
+                <a href="{{ route('baca_notif', $item->id) }}" class="text-danger float-end">Tandai Sebagai Baca</a>
+            </div>
         @empty
-            <h1>Kosong Lur</h1>
+            <h4>Tidak ada notifikasi.</h4>
         @endforelse
     </ul>
 @endsection

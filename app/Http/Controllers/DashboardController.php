@@ -37,6 +37,11 @@ class DashboardController extends Controller
 
         //births
         $births = Birth::all()->count();
+        // $data_month = DB::table('births')
+        //             ->select('id_ternak', DB::raw('count(id_ternak) as qty'))
+        //             ->groupBy('id_ternak')
+        //             ->havingRaw('count(id_ternak) >= 1')
+        //             ->get();
         $january = Birth::whereYear('tgl_lahir', 2023)
                         ->whereMonth('tgl_lahir',1)->count();
         $february = Birth::whereYear('tgl_lahir', 2023)
@@ -64,10 +69,6 @@ class DashboardController extends Controller
 
         //healthiness
         $healths = Health::all()->count();
-        // $counts = Health::select('id_ternak')
-        //         ->selectRaw('count(id_ternak) as qty')
-        //         ->groupBy('id_ternak')
-        //         ->get();
         $counts = DB::table('healths')
                     ->select('id_ternak', DB::raw('count(id_ternak) as qty'))
                     ->groupBy('id_ternak')
@@ -83,7 +84,7 @@ class DashboardController extends Controller
             $hitung_ternak[] = $sampel->qty;
         }
 
-        $test = [
+        $data_kesehatan = [
             'hewan' => $id_ternak_list,
             'counts' => $hitung_ternak
         ];
@@ -119,7 +120,7 @@ class DashboardController extends Controller
 
             'healths' => $healths,
             'counts' => $counts,
-            'test' => $test
+            'data_kesehatan' => $data_kesehatan
         ]);
     }
 }
