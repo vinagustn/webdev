@@ -24,13 +24,13 @@ class DatabaseSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        User::create([
-            'name' => 'Superadmin',
-            'username' => 'admin',
-            'role' => 'superadmin',
-            'status' => true,
-            'password' => Hash::make('superadmin')
-        ]);
+        // User::create([
+        //     'name' => 'Superadmin',
+        //     'username' => 'admin',
+        //     'role' => 'superadmin',
+        //     'status' => true,
+        //     'password' => Hash::make('superadmin')
+        // ]);
 
         for ($i = 1; $i <= 5; $i++) {
             DB::table('users')->insert([

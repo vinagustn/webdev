@@ -15,8 +15,8 @@ class NotifController extends Controller
     public function reminder()
     {
         $data = Marriage::where('status', 'proses')->get();
-        $data->tgl_proses = Carbon::create($data->tgl_kawin)->addDays(25);
-        $data->save;
+        // $data->tgl_proses = Carbon::create($data->tgl_kawin)->addDays(25);
+        // $data->save;
         // dd(date('Y-m-d'));
         foreach ($data as $key => $proses) {
             # code...

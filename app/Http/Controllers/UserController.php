@@ -32,7 +32,7 @@ class UserController extends Controller
         $validatedUser = $request->validate([
             'username' => 'required|min:6|max:20|unique:users',
             'name' => 'required|max:100',
-            'password'=> 'required|min:6'
+            'password'=> 'required|min:6',
         ]);
 
 
@@ -58,7 +58,7 @@ class UserController extends Controller
         $this->validate($request, [
             'username' => 'required|min:6|max:20|unique:users',
             'name' => 'required|max:100',
-            'password'=> 'required|min:6'
+            'password'=> 'required|min:6',
         ]);
 
         $users = User::find($id);
