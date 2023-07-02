@@ -43,6 +43,10 @@ Route::middleware(['auth', 'cekRole:superadmin'])->group( function(){
 });
 
 Route::middleware(['auth', 'cekRole:karyawan,superadmin'])->group(function(){
+    //notif
+    Route::get('/notification', [NotifController::class, 'reminder']);
+    Route::get('/notification/{id}', [NotifController::class, 'readMessage'])->name('baca_notif');
+
     //breeding route
     Route::get('/breeding/input', [BreedingController::class, 'index']);
     Route::post('/breeding/input', [BreedingController::class, 'store']);
@@ -73,12 +77,3 @@ Route::middleware(['auth', 'cekRole:karyawan,superadmin'])->group(function(){
     Route::get('/kelahiran/list', [BirthController::class, 'show']);
 });
 
-
-// Route::get('/kelahiran/{id}/edit', [BirthController::class, 'edit']);
-// Route::patch('/kelahiran/{id}/edit', [BirthController::class, 'update']);
-// Route::delete('/kelahiran/list/{id}', [BirthController::class, 'destroy']);
-
-
-Route::get('/notification', [NotifController::class, 'reminder']);
-Route::get('/notification/{id}', [NotifController::class, 'readMessage'])->name('baca_notif');
-// Route::post('/mark-as-read', [MarriageController::class, 'markAsReadNotif']);
