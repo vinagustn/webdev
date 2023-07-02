@@ -24,22 +24,30 @@ class DatabaseSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        // User::create([
-        //     'name' => 'Superadmin',
-        //     'username' => 'admin',
-        //     'role' => 'superadmin',
-        //     'status' => true,
-        //     'password' => Hash::make('superadmin')
-        // ]);
+        DB::table('users')->insert([
+            'name' => 'Superadmin',
+            'username' => 'superadmin',
+            'role' => 'superadmin',
+            'status' => true,
+            'password' => Hash::make('superadmin')
+        ]);
 
-        for ($i = 1; $i <= 5; $i++) {
-            DB::table('users')->insert([
-                'name' => $faker->name,
-                'username' => $faker->username,
-                'password' => Hash::make('password'),
-                'status' => rand(0, 1)
-            ]);
-        }
+        DB::table('users')->insert([
+            'name' => 'Agus Setiawan',
+            'username' => 'agus.setiawan',
+            'role' => 'karyawan', 
+            'status' => true,
+            'password' => Hash::make('agussetiawan')
+        ]);
+
+        // for ($i = 1; $i <= 5; $i++) {
+        //     DB::table('users')->insert([
+        //         'name' => $faker->name,
+        //         'username' => $faker->username,
+        //         'password' => Hash::make('password'),
+        //         'status' => rand(0, 1)
+        //     ]);
+        // }
 
         for ($i = 1; $i <= 5; $i++) {
             DB::table('breedings')->insert([

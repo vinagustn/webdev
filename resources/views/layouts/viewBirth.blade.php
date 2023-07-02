@@ -35,7 +35,6 @@
                         <th scope="col">@sortablelink('jml_anak','Jumlah Anak',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
                         <th scope="col">ID Anakan</th>
                         <th scope="col">Gender Anakan</th>
-                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>

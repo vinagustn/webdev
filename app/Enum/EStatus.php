@@ -9,6 +9,7 @@ enum EStatus:string
     case PROCESS = 'Proses';
     case PREGNANT   = 'Hamil';
     case UNPREGNANT = "Tidak Hamil";
+    case BIRTH = "Melahirkan";
 
     // public static function values(): array
     // {

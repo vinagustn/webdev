@@ -74,12 +74,6 @@ class MarriageController extends Controller
             'status' => $request->status,
         ]);
 
-        // if($married->status == 'Hamil'){
-        //     $married->update([
-        //         'tgl_hamil' => date('Y-m-d', strtotime($married->tgl_kawin . "+150 days"))
-        //     ]);
-        // }
-
         return redirect('/perkawinan/list')->with('success', 'Data berhasil diubah!!');
     }
 

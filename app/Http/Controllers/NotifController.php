@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Notif;
 use App\Models\Marriage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NotifController extends Controller
 {
@@ -14,17 +15,30 @@ class NotifController extends Controller
 
     public function reminder()
     {
-        $data = Marriage::where('status', 'proses')->get();
-        // $data->tgl_proses = Carbon::create($data->tgl_kawin)->addDays(25);
-        // $data->save;
-        // dd(date('Y-m-d'));
+        $skrg = Carbon::now();
+        $data = Marriage::where('status', 'Proses')->get();
         foreach ($data as $key => $proses) {
+            $tgl_kwn = Carbon::parse($proses->tgl_kawin);
             # code...
-            if ($proses->tgl_proses == date('Y-m-d')) {
+            if (($tgl_kwn->diffInDays($skrg)) == 25) {
                 # code...
                 Notif::create([
                     'id_kawin' => $proses->id,
                     'message' => 'Sudah 25 hari dari tanggal perkawinan, coba cek apakah kambing Hamil atau Tidak!',
+                    'read' => 'show'
+                ]);
+            }
+        }
+
+        $newData = Marriage::where('status', 'Hamil')->get();
+        foreach ($newData as $key => $pregnant)
+        {
+            $tgl_kawinn = Carbon::parse($pregnant->tgl_kawin);
+            if (($tgl_kawinn->diffInDays($skrg)) == 150)
+            {
+                Notif::create([
+                    'id_kawin' => $pregnant->id,
+                    'message' => 'Sudah 150 hari nih dari, coba cek kambing betinanya!',
                     'read' => 'show'
                 ]);
             }
@@ -36,19 +50,8 @@ class NotifController extends Controller
             'data' => $data
         ]);
 
-        // $newData = Marriage::where('status', 'hamil')->get();
-        // foreach ($newData as $key => $pregnant)
-        // {
-        //     if ($pregnant->tgl_hamil == date('Y-m-d'))
-        //     {
-        //         Notif::create([
-        //             'id_kawin' => $pregnant->id,
-        //             'message' => 'Sudah 150 hari nih dari, coba cek kambing betinanya!',
-        //             'read' => 'show'
-        //         ]);
-        //     }
-        // }
-        // dd('sampel reminder proses notif');
+        
+    //     // dd('sampel reminder proses notif');
     }
 
     public function readMessage($id)

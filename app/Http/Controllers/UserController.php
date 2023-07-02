@@ -19,7 +19,7 @@ class UserController extends Controller
     //viewed
     public function index()
     {
-        $users = User::sortable(['name', 'username', 'status'])->latest()->filter(request(['search']))->paginate(10);
+        $users = User::where('role', 'karyawan')->sortable(['name', 'username'])->latest()->filter(request(['search']))->paginate(10);
         return view('layouts.register', [
             'users' => $users,
             'tittle' => 'employees'

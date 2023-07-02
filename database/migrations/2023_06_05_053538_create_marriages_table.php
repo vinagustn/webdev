@@ -24,8 +24,6 @@ return new class extends Migration
                     ->on('breedings')->onDelete('cascade')
                     ->onUpdate('cascade');
             $table->string('status');
-            $table->date('tgl_proses')->nullable();
-            $table->date('tgl_hamil')->nullable();
             $table->timestamps();
         });
     }
