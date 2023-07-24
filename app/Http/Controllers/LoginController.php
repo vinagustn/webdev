@@ -31,7 +31,7 @@ class LoginController extends Controller
                 
             }else if(Auth::user()->role == 'karyawan' && Auth::user()->status == true){
                 $request -> session() -> regenerate();
-                return redirect()->intended('/breeding/input');
+                return redirect()->intended('/dashboard');
             }
 
 

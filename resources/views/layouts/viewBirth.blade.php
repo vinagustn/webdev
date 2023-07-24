@@ -28,11 +28,11 @@
                       <tr>
                         <th scope="col">No</th>
                         <th scope="col">@sortablelink('id', 'ID Kelahiran', ['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
-                        <th scope="col">@sortablelink('tgl_kawin','Tanggal Kawin',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
                         <th scope="col">@sortablelink('id_jantan','ID Jantan',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
                         <th scope="col">@sortablelink('id_betina','ID Betina',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
                         <th scope="col">@sortablelink('tgl_lahir','Tanggal Lahir',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
                         <th scope="col">@sortablelink('jml_anak','Jumlah Anak',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
+                        <th scope="col">@sortablelink('jml_anak_mati','Jumlah Anak Mati',['filter' => 'active, visible'], ['class' => 'text-decoration-none text-dark', 'rel' => 'nofollow'])</th>
                         <th scope="col">ID Anakan</th>
                         <th scope="col">Gender Anakan</th>
                       </tr>
@@ -45,11 +45,11 @@
                         <tr>
                             <th scope="row">{{ $i }}</th>
                             <td>{{ $birth->id }}</td>
-                            <td>{{ $birth->perkawinan->tgl_kawin }}</td>
                             <td>{{ $birth->perkawinan->id_jantan }}</td>
                             <td>{{ $birth->perkawinan->id_betina }}</td>
                             <td>{{ $birth->tgl_lahir }}</td>
                             <td>{{ $birth->jml_anak }}</td>
+                            <td>{{ $birth->jml_anak_mati }}</td>
                             <td>{{ $birth->id_anak }}</td>
                             <td>{{ $birth->gender_anak }}</td>
                           </tr>

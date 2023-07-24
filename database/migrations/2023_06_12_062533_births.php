@@ -19,6 +19,7 @@ return new class extends Migration
                     ->onUpdate('cascade');
             $table->date('tgl_lahir');
             $table->integer('jml_anak');
+            $table->integer('jml_anak_mati');
             $table->text('id_anak');
             $table->text('gender_anak');
             $table->timestamps();

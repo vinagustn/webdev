@@ -105,6 +105,34 @@
             </div>
         </div>
         <div class="col-lg-3">
+            <div class="card bg-success" style="border: 1px solid">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <p style="font-size: 30px; font-weight:bolder; color:white">{{ $deadBirth }}</p>
+                            <p style="color: white">Data Kelahiran Kambing Mati</p>
+                        </div>
+                        <div class="col">
+                            <svg style="opacity: 40%" fill="white" height="70px"version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                viewBox="0 0 48 48" xml:space="preserve">
+                            <path id="Layer_2_00000145048454173559577840000009480067495126113952_" d="M16,13h16c1.1,0,2-0.9,2-2s-0.9-2-2-2H16
+                                c-1.1,0-2,0.9-2,2S14.9,13,16,13z M16,19h16c1.1,0,2-0.9,2-2s-0.9-2-2-2H16c-1.1,0-2,0.9-2,2S14.9,19,16,19z M40,2H8
+                                C6.9,2,6,2.9,6,4v24.8c0,0.6,0.4,1,0.9,1.1c0.3,0,0.6-0.1,0.8-0.3l4.2-3.9l5.9,5.6l6.2-5.7l5.5,5.1c0.4,0.3,1,0.3,1.4,0l5.3-5.1
+                                l4.1,3.7c0.4,0.4,1,0.4,1.4,0c0.2-0.2,0.3-0.5,0.3-0.8V4C42,2.9,41.1,2,40,2z M38,21.9l-1.2-1.1c-0.4-0.3-1-0.3-1.4,0l-5.2,5l-5.5-5
+                                c-0.4-0.3-1-0.3-1.4,0l-5.4,5l-5.3-5c-0.4-0.3-1-0.3-1.4,0L10,22V6h28V21.9z M35.4,29.8l-5.2,5l-5.5-5c-0.4-0.3-1-0.3-1.4,0l-5.4,5
+                                l-5.3-5c-0.4-0.3-1-0.3-1.4,0L6,34.7V44c0,1.1,0.9,2,2,2h32c1.1,0,2-0.9,2-2v-9.6l-5.2-4.6C36.4,29.5,35.8,29.5,35.4,29.8z M38,42
+                                H10v-5.6l1.9-1.7l5.2,5c0.4,0.3,1,0.3,1.4,0l5.5-5.1l5.5,5.1c0.4,0.3,1,0.3,1.4,0l5.3-5.1l1.8,1.6C38,36.2,38,42,38,42z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <button class="card-footer" style="color: white; border-bottom: none; border-right:none; border-left:none"
+                    data-bs-target="#deadBirth" data-bs-toggle="collapse" aria-expanded="true">
+                    View details <i class="bi bi-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-3 mt-3">
             <div class="card bg-danger" style="border: 1px solid">
                 <div class="card-body">
                     <div class="row">
@@ -143,6 +171,49 @@
         <div class="collapsing" id="breeding"></div>
         <div class="collapsing" id="marriage"></div>
         <div class="collapsing mt-5" id="birth"></div>
+        <div class="collapsing" id="deadBirth">
+            <div id="dead"></div>
+                <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+                <script>
+                    var options = {
+                        series: [{
+                            name: "Banyak data",
+                            data: @json($jml_anak_mati['jml_anak_mati'])
+                        }],
+                        chart: {
+                            type: 'bar',
+                            height: 450, width: 900
+                        },
+                        plotOptions: {
+                            bar: {
+                                borderRadius: 4,
+                                horizontal: false,
+                            }
+                        },
+                        title: {
+                            text: "Data Kelahiran yang Mati"
+                        },
+                        dataLabels: {
+                            enabled: false
+                        },
+                        xaxis: {
+                            categories:  @json($jml_anak_mati['id_kawin']),
+                            name: "ID Perkawinan",
+                            title: {
+                                text: "ID Perkawinan"
+                            }
+                        },
+                        yaxis: {
+                            title: {
+                                text: "Jumlah data"
+                            }
+                        }
+                    };
+
+                    var chart = new ApexCharts(document.querySelector("#dead"), options);
+                    chart.render();
+                </script>
+        </div>
         <div class="collapsing mt-3" id="health">
             <div id="chart"></div>
             <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -229,7 +300,7 @@
         ]);
 
         var options = {
-            title: 'Data Perkawinan Berdasarkan Status',
+            title: 'Data Breeding Berdasarkan Jenis Kelamin',
             pieSliceText: 'value',
             'width': 900,
             'height': 500,
@@ -275,26 +346,4 @@
         var chart = new google.charts.Bar(document.getElementById('birth'));
         chart.draw(data, options);
     }
-
-    // function drawHealth() {
-    //     var data = google.visualization.arrayToDataTable([
-    //         ['ID Ternak Breeding', 'Banyak Data'],
-    //         [@json($data_kesehatan['hewan']), @json($data_kesehatan['counts'])]
-    //     ]);
-
-    //     var options = {
-    //         chart: {
-    //             title: 'Data Kelahiran Ternak Tahun 2023'
-    //         },
-    //         bars: 'vertical',
-    //         'width': 800,
-    //         'height': 300,
-    //         legend: {
-    //             position: 'none'
-    //         }
-    //     };
-
-    //     var chart = new google.charts.Bar(document.getElementById('health'));
-    //     chart.draw(data, options);
-    // }
 </script>

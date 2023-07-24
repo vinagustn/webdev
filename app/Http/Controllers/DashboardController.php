@@ -14,7 +14,7 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('cekRole:superadmin');
+        $this->middleware('cekRole:superadmin,karyawan');
     }
     
     public function index()
@@ -37,11 +37,6 @@ class DashboardController extends Controller
 
         //births
         $births = Birth::all()->count();
-        // $data_month = DB::table('births')
-        //             ->select('id_ternak', DB::raw('count(id_ternak) as qty'))
-        //             ->groupBy('id_ternak')
-        //             ->havingRaw('count(id_ternak) >= 1')
-        //             ->get();
         $january = Birth::whereYear('tgl_lahir', 2023)
                         ->whereMonth('tgl_lahir',1)->count();
         $february = Birth::whereYear('tgl_lahir', 2023)
@@ -66,6 +61,30 @@ class DashboardController extends Controller
                         ->whereMonth('tgl_lahir',11)->count();
         $dec = Birth::whereYear('tgl_lahir', 2023)
                         ->whereMonth('tgl_lahir',12)->count();
+        //anak yang mati
+        $deadBirth = DB::table('births')
+                    ->select('jml_anak_mati')
+                    ->groupBy('id_kawin')
+                    ->count();
+        $hitung = DB::table('births')
+                    ->select('id_kawin', DB::raw('count(jml_anak_mati) as qty'))
+                    ->groupBy('id_kawin')
+                    ->havingRaw('count(jml_anak_mati) >= 1')
+                    ->get();
+
+        $list_id_kawin = [];
+        $jml_mati = [];
+
+        foreach ($hitung as $sampel) {
+            # code...
+            $list_id_kawin[] = $sampel->id_kawin;
+            $jml_mati[] = $sampel->qty;
+        }
+
+        $data_lahir_mati = [
+            'id_kawin' => $list_id_kawin,
+            'jml_anak_mati' => $jml_mati
+        ];
 
         //healthiness
         $healths = Health::all()->count();
@@ -117,6 +136,9 @@ class DashboardController extends Controller
             'oct' => $oct,
             'nov' => $nov,
             'dec' => $dec,
+            'deadBirth' => $deadBirth,
+            'id_kawin' => $hitung,
+            'jml_anak_mati' => $data_lahir_mati,
 
             'healths' => $healths,
             'counts' => $counts,

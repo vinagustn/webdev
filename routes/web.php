@@ -36,13 +36,12 @@ Route::middleware(['auth', 'cekRole:superadmin'])->group( function(){
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('editEmployee');
     Route::patch('/users/{id}/edit', [UserController::class, 'update'])->name('updateEmployee');
     Route::delete('/users/{id}/delete', [UserController::class, 'destroy']);
-    
-
-    //dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index']);
 });
 
 Route::middleware(['auth', 'cekRole:karyawan,superadmin'])->group(function(){
+    //dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    
     //notif
     Route::get('/notification', [NotifController::class, 'reminder']);
     Route::get('/notification/{id}', [NotifController::class, 'readMessage'])->name('baca_notif');

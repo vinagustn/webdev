@@ -55,7 +55,6 @@
                     </span>
                 </a>
             </li>
-            @if (auth()->user()->role == 'superadmin')
                 <li>
                     <a href="/dashboard" class="a-menu">
                         <i class="fa fa-bar-chart-o"></i>
@@ -64,7 +63,6 @@
                         </span>
                     </a>
                 </li>
-            @endif
 
             <li>
                 <a href="/notification" class="a-menu">

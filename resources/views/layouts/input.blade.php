@@ -51,7 +51,7 @@
                 </div>
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text size-chart" id="" style="width: 150px">Umur</span>
-                    <input type="text" class="form-control  @error('umur') is-invalid @enderror" name="umur" aria-label="umur" aria-describedby="umur" placeholder="12" value="{{ old('umur') }}">
+                    <input type="text" class="form-control  @error('umur') is-invalid @enderror" name="umur" aria-label="umur" aria-describedby="umur" value="{{ old('umur') }}">
                     <span class="input-group-text size-expl" style="width: 100px">bulan</span>
                     @error('umur')
                         <div class="invalid-feedback">
@@ -61,7 +61,7 @@
                 </div>
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text size-chart" id="" style="width: 150px">Tinggi Badan</span>
-                    <input type="text" class="form-control  @error('tinggi') is-invalid @enderror" name="tinggi" aria-label="tinggi" aria-describedby="tinggi" placeholder="190" value="{{ old('tinggi') }}">
+                    <input type="text" class="form-control  @error('tinggi') is-invalid @enderror" name="tinggi" aria-label="tinggi" aria-describedby="tinggi" value="{{ old('tinggi') }}">
                     <span class="input-group-text size-expl" style="width: 100px">cm</span>
                     @error('tinggi')
                         <div class="invalid-feedback">
@@ -71,7 +71,7 @@
                 </div>
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text size-chart" id="" style="width: 150px">Panjang Badan</span>
-                    <input type="text" class="form-control  @error('panjang_bdn') is-invalid @enderror" name="panjang_bdn" aria-label="panjang_bdn" aria-describedby="panjang_bdn" placeholder="180.7" value="{{ old('panjang_bdn') }}">
+                    <input type="text" class="form-control  @error('panjang_bdn') is-invalid @enderror" name="panjang_bdn" aria-label="panjang_bdn" aria-describedby="panjang_bdn" value="{{ old('panjang_bdn') }}">
                     <span class="input-group-text size-expl" style="width: 100px">cm</span>
                     @error('panjang_bdn')
                         <div class="invalid-feedback">
@@ -81,7 +81,7 @@
                 </div>
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text size-chart" id="" style="width: 150px">Lingkar Dada</span>
-                    <input type="text" class="form-control  @error('lingkar') is-invalid @enderror" name="lingkar" aria-label="lingkar" aria-describedby="lingkar" placeholder="180" value="{{ old('lingkar') }}">
+                    <input type="text" class="form-control  @error('lingkar') is-invalid @enderror" name="lingkar" aria-label="lingkar" aria-describedby="lingkar" value="{{ old('lingkar') }}">
                     <span class="input-group-text size-expl" style="width: 100px">cm</span>
                     @error('lingkar')
                         <div class="invalid-feedback">
@@ -91,7 +91,7 @@
                 </div>
                 <div class="input-group mt-3 mb-4">
                     <span class="input-group-text size-chart" id="" style="width: 150px">Panjang Telinga</span>
-                    <input type="text" class="form-control  @error('pj_telinga') is-invalid @enderror" name="pj_telinga" aria-label="pj_telinga" aria-describedby="pj_telinga" placeholder="190.0" value="{{ old('pj_telinga') }}">
+                    <input type="text" class="form-control  @error('pj_telinga') is-invalid @enderror" name="pj_telinga" aria-label="pj_telinga" aria-describedby="pj_telinga" value="{{ old('pj_telinga') }}">
                     <span class="input-group-text size-expl" style="width: 100px">cm</span>
                     @error('pj_telinga')
                         <div class="invalid-feedback">

@@ -49,15 +49,15 @@ class DatabaseSeeder extends Seeder
         //     ]);
         // }
 
-        for ($i = 1; $i <= 5; $i++) {
-            DB::table('breedings')->insert([
-                'gender' => $faker->randomElement(EGender::cases()),
-                'umur' => $faker->randomDigit,
-                'tinggi' => $faker->randomDigit,
-                'panjang_bdn' => $faker->randomDigit,
-                'lingkar' => $faker->randomDigit,
-                'pj_telinga' => $faker->randomDigit
-            ]);
-        }
+        // for ($i = 1; $i <= 5; $i++) {
+        //     DB::table('breedings')->insert([
+        //         'gender' => $faker->randomElement(EGender::cases()),
+        //         'umur' => $faker->randomDigit,
+        //         'tinggi' => $faker->randomDigit,
+        //         'panjang_bdn' => $faker->randomDigit,
+        //         'lingkar' => $faker->randomDigit,
+        //         'pj_telinga' => $faker->randomDigit
+        //     ]);
+        // }
     }
 }

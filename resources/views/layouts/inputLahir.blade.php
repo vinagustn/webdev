@@ -33,7 +33,7 @@
                 @csrf
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text size-chart" style="width: 150px" id="">Id Perkawinan</span>
-                    <input type="text" class="form-control @error('id_kawin') is-invalid @enderror" name="id_kawin" id="id_kawin" aria-label="id_kawin" aria-describedby="id_kawin" placeholder="12">
+                    <input type="text" class="form-control @error('id_kawin') is-invalid @enderror" name="id_kawin" id="id_kawin" aria-label="id_kawin" aria-describedby="id_kawin">
                     @error('id_kawin')
                     <div class="invalid-feedback">
                         ID perkawinan tidak terdaftar
@@ -51,7 +51,7 @@
                 </div>
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text size-chart"  style="width: 150px" id="">Jumlah Anak</span>
-                    <input type="text" class="form-control @error('jml_anak') is-invalid @enderror" name="jml_anak" id="jml_anak" aria-label="jml_anak" aria-describedby="jml_anak" placeholder="3">
+                    <input type="text" class="form-control @error('jml_anak') is-invalid @enderror" name="jml_anak" id="jml_anak" aria-label="jml_anak" aria-describedby="jml_anak">
                     @error('jml_anak')
                     <div class="invalid-feedback">
                         Mohon masukkan angka
@@ -62,15 +62,24 @@
                     <div class="col">
                         <div class="input-group mb-3">
                             <span class="input-group-text size-chart" for="id_anak" style="width: 150px">ID Anakan</span>
-                            <textarea type="text" class="form-control @error('id_anak') is-invalid @enderror" name="id_anak" id="id_anak" placeholder="1, 2, 3"></textarea>
+                            <textarea type="text" class="form-control @error('id_anak') is-invalid @enderror" name="id_anak" id="id_anak"></textarea>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-group mb-3">
                             <span class="input-group-text size-chart" for="gender_anak" style="width: 150px">Gender Anakan</span>
-                            <textarea type="text" class="form-control @error('gender_anak') is-invalid @enderror" name="gender_anak" id="gender_anak" placeholder="Jantan, Betina, Betina"></textarea>
+                            <textarea type="text" class="form-control @error('gender_anak') is-invalid @enderror" name="gender_anak" id="gender_anak"></textarea>
                         </div>
                     </div>
+                </div>
+                <div class="input-group mt-3 mb-3">
+                    <span class="input-group-text size-chart"  style="width: 150px" id="">Jumlah Anak Mati</span>
+                    <input type="text" class="form-control @error('jml_anak_mati') is-invalid @enderror" name="jml_anak_mati" id="jml_anak_mati" aria-label="jml_anak_mati" aria-describedby="jml_anak_mati">
+                    @error('jml_anak_mati')
+                    <div class="invalid-feedback">
+                        Mohon masukkan angka
+                    </div>
+                    @enderror
                 </div>
                 <input type="submit" class="btn btn-primary float-end" value="Save" onclick="return confirm('Yakin data sudah benar?')">
             </form>

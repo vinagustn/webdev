@@ -29,6 +29,7 @@ class BirthController extends Controller
             'id_kawin' => 'required|exists:marriages,id',
             'tgl_lahir' => 'required',
             'jml_anak' => 'required|integer',
+            'jml_anak_mati' => 'required|integer',
             'id_anak' => 'required',
             'gender_anak' => 'required'
         ]);
@@ -41,7 +42,7 @@ class BirthController extends Controller
     public function show()
     {
         $births = Birth::with('perkawinan')->sortable([
-            'id', 'id_kawin', 'tgl_lahir', 'jml_anak', 'tgl_kawin', 'id_betina', 'id_jantan'
+            'id', 'id_kawin', 'tgl_lahir', 'jml_anak', 'tgl_kawin', 'id_betina', 'id_jantan', 'jml_anak_mati'
         ])->search(request(['search']))->paginate(25);
 
         return view('layouts.viewBirth', [

@@ -17,7 +17,8 @@ class Birth extends Model
         'tgl_lahir',
         'jml_anak',
         'id_anak',
-        'gender_anak'
+        'gender_anak', 
+        'jml_anak_mati'
     ];
 
     //sorting
@@ -25,6 +26,7 @@ class Birth extends Model
         'id',
         'id_kawin',
         'jml_anak',
+        'jml_anak_mati'
     ];
 
     //relation
@@ -39,9 +41,7 @@ class Birth extends Model
         $query->when($filters['search'] ?? false, function($query, $search){
             return $query->where('id', 'like', '%'. $search .'%')
                          ->orWhere('tgl_lahir', 'like', '%'. $search .'%')
-                        //  ->orWhere('tgl_kawin', 'like', '%'. $search .'%')
-                        //  ->orWhere('id_jantan', 'like', '%'. $search .'%')
-                        //  ->orWhere('id_betina', 'like', '%'. $search .'%')
+                         ->orWhere('jml_anak_mati', 'like', '%'. $search .'%')
                          ->orWhere('jml_anak', 'like', '%'. $search .'%');
         });
     }
